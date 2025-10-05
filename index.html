@@ -1,332 +1,889 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Thaw Zin</title>
-		<link rel="stylesheet" href="style.css" />
-		<link rel="stylesheet" href="mediaqueries.css" />
-	</head>
-	<body>
-		<nav id="desktop-nav">
-			<div class="logo">Thaw Zin</div>
-			<div>
-				<ul class="nav-links">
-					<li><a href="#about">About</a></li>
-					<li><a href="#experience">Experience</a></li>
-					<li><a href="#projects">Projects</a></li>
-					<li><a href="#contact">Contact</a></li>
-				</ul>
-			</div>
-		</nav>
-		<nav id="hamburger-nav">
-			<div class="logo">Thaw Zin</div>
-			<div class="hamburger-menu">
-				<div class="hamburger-icon" onclick="toggleMenu()">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
-				<div class="menu-links">
-					<li><a href="#about" onclick="toggleMenu()">About</a></li>
-					<li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-					<li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-					<li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-				</div>
-			</div>
-		</nav>
-		<section id="profile">
-			<div class="section__pic-container">
-				<img
-					src="./ss/tz3.jpg"
-					style="border-radius: 50%; width: 300px; height: 300px"
-					alt="John Doe profile picture"
-				/>
-			</div>
-			<div class="section__text">
-				<p class="section__text__p1">Hello, I'm</p>
-				<h1 class="title">Thaw Zin</h1>
-				<p class="section__text__p2">Back-End Developer</p>
-				<div class="btn-container">
-					<button class="btn btn-color-2" onclick="window.open('./ss/Thaw Zin 0b600473d3fe4d4da567edc95b9663c9.pdf')">
-						Download CV
-					</button>
-					<button class="btn btn-color-1" onclick="location.href='./#contact'">Contact Info</button>
-				</div>
-				<div id="socials-container">
-					<img
-						src="./assets/linkedin.png"
-						alt="My LinkedIn profile"
-						class="icon"
-						onclick="location.href='https://www.linkedin.com/in/thaw-zin-4493572aa/'"
-					/>
-					<img
-						src="./assets/github.png"
-						alt="My Github profile"
-						class="icon"
-						onclick="location.href='https://github.com/Thawzin229'"
-					/>
-				</div>
-			</div>
-		</section>
-		<section id="about">
-			<p class="section__text__p1">Get To Know More</p>
-			<h1 class="title">About Me</h1>
-			<div class="section-container">
-				<div class="section__pic-container">
-					<img src="./ss/tz4.jpg" alt="Profile picture" class="about-pic" style="width: 260px; height: 360px" />
-				</div>
-				<div class="about-details-container">
-					<div class="about-containers">
-						<div class="details-container">
-							<img src="./assets/experience.png" alt="Experience icon" class="icon" />
-							<h3>Experience</h3>
-							<p>1+ years <br />Full stack Development</p>
-						</div>
-						<div class="details-container">
-							<img src="./assets/education.png" alt="Education icon" class="icon" />
-							<h3>Education</h3>
-							<p>B.A Bachelors Degree<br />Hons of International Relations</p>
-						</div>
-					</div>
-					<div class="text-container">
-						<p>
-							A passionate and dedicated Back-End Developer with a strong foundation in both front-end and back-end
-							technologies. Plus , A person who is passionated with technologies to solve problems and also want to
-							learn new technologies in the near future.
-						</p>
-					</div>
-				</div>
-			</div>
-			<img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#experience'" />
-		</section>
-		<section id="experience">
-			<p class="section__text__p1">Explore My</p>
-			<h1 class="title">Experience</h1>
-			<div class="experience-details-container">
-				<div class="about-containers">
-					<div class="details-container-exp">
-						<h2 class="experience-sub-title">Frontend Development</h2>
-						<div class="article-container">
-							<article>
-								<img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
-								<div>
-									<h3>HTML</h3>
-									<p>Experienced</p>
-								</div>
-							</article>
-							<article>
-								<img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
-								<div>
-									<h3>CSS</h3>
-									<p>Experienced</p>
-								</div>
-							</article>
-							<article>
-								<img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
-								<div>
-									<h3>JavaScript</h3>
-									<p>Intermediate</p>
-								</div>
-							</article>
-							<article>
-								<img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
-								<div>
-									<h3>Vue JS</h3>
-									<p>Intermediate</p>
-								</div>
-							</article>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thaw Zin | Full Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'mono': ['JetBrains Mono', 'monospace'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out',
+                        'slide-in-right': 'slideInRight 0.8s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'typewriter': 'typewriter 4s steps(40) 1s 1 normal both',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'terminal-blink': 'terminalBlink 1s infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'shake': 'shake 0.5s ease-in-out',
+                        'tilt': 'tilt 10s infinite linear',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        slideInLeft: {
+                            '0%': { transform: 'translateX(-50px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                        slideInRight: {
+                            '0%': { transform: 'translateX(50px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        typewriter: {
+                            'from': { width: '0' },
+                            'to': { width: '100%' },
+                        },
+                        glow: {
+                            'from': { boxShadow: '0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #e5e5e5' },
+                            'to': { boxShadow: '0 0 10px #ffffff, 0 0 15px #e5e5e5, 0 0 20px #e5e5e5, 0 0 25px #e5e5e5' },
+                        },
+                        terminalBlink: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0' },
+                        },
+                        shake: {
+                            '0%, 100%': { transform: 'translateX(0)' },
+                            '10%, 30%, 50%, 70%, 90%': { transform: 'translateX(-5px)' },
+                            '20%, 40%, 60%, 80%': { transform: 'translateX(5px)' },
+                        },
+                        tilt: {
+                            '0%, 50%, 100%': { transform: 'rotate(0deg)' },
+                            '25%': { transform: 'rotate(1deg)' },
+                            '75%': { transform: 'rotate(-1deg)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { 
+                                transform: 'scale(1)',
+                                boxShadow: '0 0 10px rgba(0,0,0,0.1)'
+                            },
+                            '50%': { 
+                                transform: 'scale(1.05)',
+                                boxShadow: '0 0 20px rgba(0,0,0,0.2)'
+                            },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .typewriter-text {
+            overflow: hidden;
+            border-right: 3px solid #000;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typewriter 4s steps(40) 1s 1 normal both;
+        }
+        .card-hover {
+            transition: all 0.4s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #000;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.05);
+            animation: float 8s ease-in-out infinite;
+        }
+        .tech-icon {
+            transition: all 0.3s ease;
+        }
+        .pulse-dot {
+            width: 10px;
+            height: 10px;
+            background: #000;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+            animation: pulse-slow 2s infinite;
+        }
+        .terminal-window {
+            background: #0a0a0a;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .terminal-header {
+            background: #1a1a1a;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+        }
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .terminal-button.close {
+            background: #ef4444;
+        }
+        .terminal-button.minimize {
+            background: #f59e0b;
+        }
+        .terminal-button.maximize {
+            background: #10b981;
+        }
+        .terminal-content {
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            color: #e2e8f0;
+        }
+        .terminal-prompt {
+            color: #10b981;
+        }
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 18px;
+            background: #ffffff;
+            animation: terminal-blink 1s infinite;
+        }
+        .skill-scroll-container {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            padding: 1rem 0;
+            cursor: grab;
+        }
+        .skill-scroll-container:active {
+            cursor: grabbing;
+        }
+        .skill-scroll-track {
+            display: flex;
+            width: max-content;
+            transition: transform 0.3s ease;
+        }
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem 1rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin: 0 0.75rem;
+            flex-shrink: 0;
+            width: 130px;
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        .skill-item:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            transform: translateY(-5px);
+        }
+        .project-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #f3f4f6;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .project-badge.freelance {
+            background: #000;
+            color: white;
+        }
+        .project-badge.industry {
+            background: #333;
+            color: white;
+        }
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #f9fafb 25%, transparent 25%, transparent 75%, #f9fafb 75%, #f9fafb),
+                        linear-gradient(45deg, #f9fafb 25%, transparent 25%, transparent 75%, #f9fafb 75%, #f9fafb);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+            opacity: 0.05;
+            z-index: -1;
+        }
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            border: 1px solid #f5f5f5;
+            position: relative;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #000, #333);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,0,0,0.1) 0%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 font-sans overflow-x-hidden">
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+    
+    <!-- Animated Background Shapes -->
+    <div class="floating-shape" style="width: 100px; height: 100px; top: 10%; left: 5%; animation-delay: 0s;"></div>
+    <div class="floating-shape" style="width: 150px; height: 150px; top: 60%; right: 10%; animation-delay: 2s;"></div>
+    <div class="floating-shape" style="width: 80px; height: 80px; bottom: 20%; left: 15%; animation-delay: 4s;"></div>
 
-							<article>
-								<img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
-								<div>
-									<h3>Inertia JS</h3>
-									<p>Basic</p>
-								</div>
-							</article>
-							<article>
-								<img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
-								<div>
-									<h3>Boot Strap</h3>
-									<p>Intermediate</p>
-								</div>
-							</article>
-						</div>
-					</div>
-					<div class="details-container-exp">
-						<h2 class="experience-sub-title">Back end Development</h2>
-						<div class="article-container">
-							<article>
-								<img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
-								<div>
-									<h3>MySQL</h3>
-									<p>Experienced</p>
-								</div>
-							</article>
-							<article>
-								<img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
-								<div>
-									<h3>Node JS</h3>
-									<p>basic</p>
-								</div>
-							</article>
-							<article>
-								<img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
-								<div>
-									<h3>PHP</h3>
-									<p>Experienced</p>
-								</div>
-							</article>
-							<article>
-								<img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
-								<div>
-									<h3>Git & Github</h3>
-									<p>Intermediate</p>
-								</div>
-							</article>
-							<article>
-								<img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
-								<div>
-									<h3>Laravel</h3>
-									<p>Experienced</p>
-								</div>
-							</article>
-							<article>
-								<img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
-								<div>
-									<h3>RESTful API</h3>
-									<p>Intermediate</p>
-								</div>
-							</article>
-						</div>
-					</div>
-				</div>
-			</div>
-			<img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#projects'" />
-		</section>
-		<section id="projects" style="min-height: 130vh">
-			<p class="section__text__p1">Browse My Recent</p>
-			<h1 class="title">Projects</h1>
-			<div class="experience-details-container">
-				<div class="about-containers" style="display: flex; flex-wrap: wrap">
-					<div class="details-container color-container">
-						<div class="article-container">
-							<img src="./ss/apple.png" alt="Project 3" class="project-img" style="height: 320px" />
-						</div>
-						<h2 class="experience-sub-title project-title">Project One</h2>
-						<div class="btn-container">
-							<button
-								class="btn btn-color-2 project-btn"
-								onclick="location.href='https://github.com/Thawzin229/Apple-E-commerce'"
-							>
-								Github
-							</button>
-							<button disabled class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/'">
-								Live Demo
-							</button>
-						</div>
-					</div>
-					<div class="details-container color-container">
-						<div class="article-container">
-							<img src="./ss/soap.png" alt="Project 3" class="project-img" style="height: 320px" />
-						</div>
-						<h2 class="experience-sub-title project-title">Project Two</h2>
-						<div class="btn-container">
-							<button
-								class="btn btn-color-2 project-btn"
-								onclick="location.href='https://github.com/Thawzin229/Soap2day'"
-							>
-								Github
-							</button>
-							<button class="btn btn-color-2 project-btn" onclick="location.href='https://soap2day-kappa.vercel.app/'">
-								Live Demo
-							</button>
-						</div>
-					</div>
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-sm z-50 py-4 border-b border-gray-200">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold font-mono gradient-text animate-pulse">THAW_ZIN<span class="text-gray-900">.dev</span></a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link font-medium">Home</a>
+                <a href="#experience" class="nav-link font-medium">Experience</a>
+                <a href="#skills" class="nav-link font-medium">Skills</a>
+                <a href="#projects" class="nav-link font-medium">Projects</a>
+                <a href="#contact" class="nav-link font-medium">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-gray-900 animate-bounce">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-6 border-t border-gray-200">
+            <a href="#home" class="block py-2 nav-link animate-slide-in-left">Home</a>
+            <a href="#experience" class="block py-2 nav-link animate-slide-in-left" style="animation-delay: 0.1s">Experience</a>
+            <a href="#skills" class="block py-2 nav-link animate-slide-in-left" style="animation-delay: 0.2s">Skills</a>
+            <a href="#projects" class="block py-2 nav-link animate-slide-in-left" style="animation-delay: 0.3s">Projects</a>
+            <a href="#contact" class="block py-2 nav-link animate-slide-in-left" style="animation-delay: 0.4s">Contact</a>
+        </div>
+    </nav>
 
-					<div class="details-container color-container">
-						<div class="article-container">
-							<img src="./ss/social.png" alt="Project 3" class="project-img" style="height: 320px" />
-						</div>
-						<h2 class="experience-sub-title project-title">Project Three</h2>
-						<div class="btn-container">
-							<button
-								class="btn btn-color-2 project-btn"
-								onclick="location.href='https://github.com/Thawzin229/Social-Media-App'"
-							>
-								Github
-							</button>
-							<button disabled class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/'">
-								Live Demo
-							</button>
-						</div>
-					</div>
-					<div class="details-container color-container">
-						<div class="article-container">
-							<img src="./ss/sar.png" alt="Project 1" class="project-img" style="height: 320px" />
-						</div>
-						<h2 class="experience-sub-title project-title">Project Four</h2>
-						<div class="btn-container">
-							<button disabled class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/'">
-								Github
-							</button>
-							<button
-								class="btn btn-color-2 project-btn"
-								onclick="location.href='https://sarpay-lann.vercel.app/auth/login'"
-							>
-								Live Demo
-							</button>
-						</div>
-					</div>
-					<div class="details-container color-container">
-						<div class="article-container">
-							<img src="./ss/steam.png" alt="Project 2" class="project-img" style="height: 320px" />
-						</div>
-						<h2 class="experience-sub-title project-title">Project Five</h2>
-						<div class="btn-container">
-							<button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/Thawzin229/Steam'">
-								Github
-							</button>
-							<button disabled class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/'">
-								Live Demo
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#contact'" />
-		</section>
-		<section id="contact">
-			<p class="section__text__p1">Get in Touch</p>
-			<h1 class="title">Contact Me</h1>
-			<div class="contact-info-upper-container">
-				<div class="contact-info-container">
-					<img src="./assets/email.png" alt="Email icon" class="icon contact-icon email-icon" />
-					<p><a href="mailto:examplemail@gmail.com">thawzin842019@gmail.com</a></p>
-				</div>
-				<div class="contact-info-container">
-					<img src="./assets/linkedin.png" alt="LinkedIn icon" class="icon contact-icon" />
-					<p><a href="https://www.linkedin.com/in/thaw-zin-4493572aa/">LinkedIn</a></p>
-				</div>
-			</div>
-		</section>
-		<footer>
-			<nav>
-				<div class="nav-links-container">
-					<ul class="nav-links">
-						<li><a href="#about">About</a></li>
-						<li><a href="#experience">Experience</a></li>
-						<li><a href="#projects">Projects</a></li>
-						<li><a href="#contact">Contact</a></li>
-					</ul>
-				</div>
-			</nav>
-			<p>
-				Let's connect and explore how we can work together to bring your vision to life and create remarkable digital
-				experiences.
-			</p>
-		</footer>
-		<script src="script.js"></script>
-	</body>
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-16 relative">
+        <div class="container mx-auto px-6 py-20">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="flex items-center mb-4 animate-fade-in">
+                        <span class="pulse-dot"></span>
+                        <span class="text-gray-600 font-mono text-sm">Full Stack Developer</span>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-slide-up">
+                        Thaw Zin
+                    </h1>
+                    <div class="typewriter-text text-xl mb-8 text-gray-700 max-w-lg font-mono">
+                        &gt; Building digital solutions for real-world problems
+                    </div>
+                    <p class="text-lg mb-8 text-gray-600 max-w-lg animate-fade-in" style="animation-delay: 0.5s">
+                        A passionate full-stack developer with experience in telecommunications, e-commerce, and HR systems. 
+                        I build robust applications using modern technologies like Laravel, Vue.js, and Node.js.
+                    </p>
+                    <div class="flex space-x-4 animate-slide-up" style="animation-delay: 0.7s">
+                        <a href="#projects" class="bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition duration-300 transform hover:scale-105 shadow-lg animate-pulse">
+                            View My Work <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#contact" class="border border-black text-black px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                            Get In Touch <i class="fas fa-paper-plane ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative animate-float">
+                        <div class="terminal-window w-80 md:w-96 animate-tilt">
+                            <div class="terminal-header">
+                                <div class="terminal-button close"></div>
+                                <div class="terminal-button minimize"></div>
+                                <div class="terminal-button maximize"></div>
+                                <div class="text-gray-300 text-sm ml-4 font-mono">thaw-zin.dev -- bash</div>
+                            </div>
+                            <div class="terminal-content">
+                                <div class="code-line"><span class="terminal-prompt">thawzin@portfolio:~$</span> whoami</div>
+                                <div class="code-line">full_stack_developer</div>
+                                <div class="code-line mt-4"><span class="terminal-prompt">thawzin@portfolio:~$</span> cat experience.txt</div>
+                                <div class="code-line">Global Technology Group (5BB) - Full Stack Developer</div>
+                                <div class="code-line">Sarpaylann Book Store - Freelance Developer</div>
+                                <div class="code-line">Articles & Training Blog - Backend Developer</div>
+                                <div class="code-line mt-4"><span class="terminal-prompt">thawzin@portfolio:~$</span> <span class="terminal-cursor"></span></div>
+                            </div>
+                        </div>
+                        <div class="absolute -top-4 -right-4 w-16 h-16 bg-black rounded-full flex items-center justify-center animate-bounce">
+                            <i class="fas fa-code text-white text-xl"></i>
+                        </div>
+                        <div class="absolute -bottom-6 -left-6 w-20 h-20 border-4 border-black rounded-full animate-spin-slow"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-2xl text-gray-700"></i>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16 animate-slide-up">
+                Professional <span class="gradient-text">Experience</span>
+            </h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- Global Technology Group -->
+                <div class="mb-12 animate-slide-up">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold">Full Stack Developer</h3>
+                        <span class="text-gray-700 font-mono bg-gray-100 px-3 py-1 rounded-lg animate-pulse">May 2024 - Present</span>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-building text-gray-600 mr-2"></i>
+                        <span class="font-medium">Global Technology Group (5BB)</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Telecommunications Industry</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li>Designed and developed a new reporting portal (5BB), Ticketing API System (GTG) and Recruitment HR Job Portal using Laravel, Vue.js, REST API and Inertia.js</li>
+                        <li>Maintained and enhanced features for the HR department Software (KPI), OS Ticketing and University of Wisdom Land (UWL) systems using PHP and JQuery</li>
+                        <li>Maintained and configured Apache servers to ensure smooth deployment and operation of applications</li>
+                    </ul>
+                </div>
+                
+                <!-- Sarpaylann Book Store -->
+                <div class="mb-12 animate-slide-up" style="animation-delay: 0.1s">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold">Freelance Developer</h3>
+                        <span class="text-gray-700 font-mono bg-gray-100 px-3 py-1 rounded-lg">Jan 2024 - Present</span>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-book text-gray-600 mr-2"></i>
+                        <span class="font-medium">Sarpaylann Book Store</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">E-commerce Industry</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li>Developed and deployed a fully functional online bookstore website aimed to provide a user-friendly interface</li>
+                        <li>Integrated back-end functionality with PHP and Laravel framework, facilitating secure user authentication, order processing, and payment handling</li>
+                    </ul>
+                </div>
+                
+                <!-- Articles and Training Blog -->
+                <div class="animate-slide-up" style="animation-delay: 0.2s">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold">Backend Developer</h3>
+                        <span class="text-gray-700 font-mono bg-gray-100 px-3 py-1 rounded-lg">June 2024 - Present</span>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-blog text-gray-600 mr-2"></i>
+                        <span class="font-medium">Articles And Training Blog</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Content Management Industry</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li>Developed robust RESTful APIs for an article blog platform using PHP/Laravel</li>
+                        <li>Integrated authentication/authorization to secure API endpoints</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section - UPDATED WITH DRAGGABLE HORIZONTAL SCROLL -->
+    <section id="skills" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16 animate-slide-up">
+                Technical <span class="gradient-text">Skills</span>
+            </h2>
+            
+            <!-- Horizontal Draggable Skills -->
+            <div class="mb-16">
+                <h3 class="text-xl font-bold mb-8 text-center animate-fade-in">Technologies & Tools</h3>
+                <div class="skill-scroll-container" id="skillScrollContainer">
+                    <div class="skill-scroll-track" id="skillScrollTrack">
+                        <!-- Skills -->
+                        <div class="skill-item">
+                            <i class="fab fa-html5 text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium">HTML5</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-css3-alt text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium">CSS3</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-js text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium">JavaScript</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-vuejs text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium">Vue.js</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-php text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium">PHP</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-laravel text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium">Laravel</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-node-js text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium">Node.js</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-database text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium">MySQL</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-git-alt text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium">Git</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-docker text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium">Docker</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-server text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium">Apache</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-project-diagram text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium">OOP</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-code-branch text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium">Inertia.js</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-bootstrap text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium">Bootstrap</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-code text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium">REST API</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-shield-alt text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium">Security</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-4 text-gray-500 text-sm">
+                    <i class="fas fa-arrows-left-right mr-2"></i> Drag to scroll through skills
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section - IMPROVED PROJECT CARDS -->
+    <section id="projects" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16 animate-slide-up">
+                Featured <span class="gradient-text">Projects</span>
+            </h2>
+            
+            <!-- Industry Projects -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-8 text-center animate-slide-in-left">Industry Experience Projects</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 5BB Reporting Portal -->
+                    <div class="project-card animate-slide-up">
+                        <div class="project-image">
+                            <i class="fas fa-chart-bar text-5xl text-white z-10"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">5BB Reporting Portal</h3>
+                            <p class="text-gray-700 mb-4">A comprehensive reporting portal for telecommunications data analysis and visualization with real-time dashboards.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="project-badge industry">Industry Project</span>
+                                <span class="project-badge">Laravel</span>
+                                <span class="project-badge">Vue.js</span>
+                                <span class="project-badge">REST API</span>
+                            </div>
+                            <div class="flex space-x-4 mt-4">
+                                <a href="#" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300">
+                                    <i class="fas fa-external-link-alt mr-2"></i> View Project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- KPI System -->
+                    <div class="project-card animate-slide-up" style="animation-delay: 0.1s">
+                        <div class="project-image">
+                            <i class="fas fa-tachometer-alt text-5xl text-white z-10"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">KPI System</h3>
+                            <p class="text-gray-700 mb-4">Key Performance Indicator tracking system for HR department with analytics, reporting, and performance insights.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="project-badge industry">Industry Project</span>
+                                <span class="project-badge">PHP</span>
+                                <span class="project-badge">jQuery</span>
+                                <span class="project-badge">MySQL</span>
+                            </div>
+                            <div class="flex space-x-4 mt-4">
+                                <a href="#" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300">
+                                    <i class="fas fa-external-link-alt mr-2"></i> View Project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recruitment HR Portal -->
+                    <div class="project-card animate-slide-up" style="animation-delay: 0.2s">
+                        <div class="project-image">
+                            <i class="fas fa-users text-5xl text-white z-10"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Recruitment HR Portal</h3>
+                            <p class="text-gray-700 mb-4">Job portal and recruitment management system with applicant tracking and interview scheduling.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="project-badge industry">Industry Project</span>
+                                <span class="project-badge">Laravel</span>
+                                <span class="project-badge">Vue.js</span>
+                                <span class="project-badge">Inertia.js</span>
+                            </div>
+                            <div class="flex space-x-4 mt-4">
+                                <a href="#" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300">
+                                    <i class="fas fa-external-link-alt mr-2"></i> View Project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- OS Ticketing System -->
+                    <div class="project-card animate-slide-up" style="animation-delay: 0.3s">
+                        <div class="project-image">
+                            <i class="fas fa-ticket-alt text-5xl text-white z-10"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">OS Ticketing System</h3>
+                            <p class="text-gray-700 mb-4">Admin panel for in-house issue tracking and resolution management with priority levels and SLA tracking.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="project-badge industry">Industry Project</span>
+                                <span class="project-badge">PHP</span>
+                                <span class="project-badge">MySQL</span>
+                                <span class="project-badge">Admin Panel</span>
+                            </div>
+                            <div class="flex space-x-4 mt-4">
+                                <a href="#" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300">
+                                    <i class="fas fa-external-link-alt mr-2"></i> View Project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- GTG Ticketing API -->
+                    <div class="project-card animate-slide-up" style="animation-delay: 0.4s">
+                        <div class="project-image">
+                            <i class="fas fa-code text-5xl text-white z-10"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">GTG Ticketing API</h3>
+                            <p class="text-gray-700 mb-4">Laravel API backend for mobile app ticketing system with authentication, real-time notifications, and reporting.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="project-badge industry">Industry Project</span>
+                                <span class="project-badge">Laravel</span>
+                                <span class="project-badge">REST API</span>
+                                <span class="project-badge">Authentication</span>
+                            </div>
+                            <div class="flex space-x-4 mt-4">
+                                <a href="#" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300">
+                                    <i class="fas fa-external-link-alt mr-2"></i> View Project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- University of Wisdom Land -->
+                    <div class="project-card animate-slide-up" style="animation-delay: 0.5s">
+                        <div class="project-image">
+                            <i class="fas fa-university text-5xl text-white z-10"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">University of Wisdom Land</h3>
+                            <p class="text-gray-700 mb-4">University management system with course registration, student management, and academic reporting features.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="project-badge industry">Industry Project</span>
+                                <span class="project-badge">PHP</span>
+                                <span class="project-badge">jQuery</span>
+                                <span class="project-badge">MySQL</span>
+                            </div>
+                            <div class="flex space-x-4 mt-4">
+                                <a href="#" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300">
+                                    <i class="fas fa-external-link-alt mr-2"></i> View Project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Freelance Projects -->
+            <div>
+                <h3 class="text-2xl font-bold mb-8 text-center animate-slide-in-right">Freelance Projects</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Sarpaylann Book Store -->
+                    <div class="project-card animate-slide-up" style="animation-delay: 0.6s">
+                        <div class="project-image">
+                            <i class="fas fa-book text-5xl text-white z-10"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Sarpaylann Book Store</h3>
+                            <p class="text-gray-700 mb-4">A fully functional e-commerce platform for book sales with secure payment processing, inventory management, and order tracking.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="project-badge freelance">Freelance Project</span>
+                                <span class="project-badge">PHP</span>
+                                <span class="project-badge">Laravel</span>
+                                <span class="project-badge">E-commerce</span>
+                            </div>
+                            <div class="flex space-x-4 mt-4">
+                                <a href="#" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300">
+                                    <i class="fas fa-external-link-alt mr-2"></i> View Project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- HeinZaw Blog -->
+                    <div class="project-card animate-slide-up" style="animation-delay: 0.7s">
+                        <div class="project-image">
+                            <i class="fas fa-blog text-5xl text-white z-10"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">HeinZaw Blog</h3>
+                            <p class="text-gray-700 mb-4">Articles and training blog platform with content management, user authentication, comments system, and SEO optimization.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="project-badge freelance">Freelance Project</span>
+                                <span class="project-badge">PHP</span>
+                                <span class="project-badge">Laravel</span>
+                                <span class="project-badge">REST API</span>
+                            </div>
+                            <div class="flex space-x-4 mt-4">
+                                <a href="#" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300">
+                                    <i class="fas fa-external-link-alt mr-2"></i> View Project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16 animate-slide-up">
+                Get In <span class="gradient-text">Touch</span>
+            </h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-gray-50 rounded-xl shadow-lg p-8 animate-glow">
+                    <form id="contact-form">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 mb-2 font-medium">Your Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 mb-2 font-medium">Your Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300" required>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label for="subject" class="block text-gray-700 mb-2 font-medium">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 mb-2 font-medium">Your Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-gray-800 transition duration-300 flex items-center justify-center shadow-lg transform hover:scale-105">
+                            <i class="fas fa-paper-plane mr-2"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+                <div class="flex justify-center space-x-8 mt-12">
+                    <a href="#" class="text-gray-700 hover:text-black transition duration-300 transform hover:scale-125">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-700 hover:text-black transition duration-300 transform hover:scale-125">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+                    <a href="mailto:thawzin842019@gmail.com" class="text-gray-700 hover:text-black transition duration-300 transform hover:scale-125">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </a>
+                    <a href="tel:09696629061" class="text-gray-700 hover:text-black transition duration-300 transform hover:scale-125">
+                        <i class="fas fa-phone text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="font-mono">&copy; 2024 Thaw Zin. All rights reserved.</p>
+            <p class="mt-2 text-gray-400">Crafting digital experiences with code and creativity.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+            this.classList.toggle('animate-shake');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.classList.add('animate-shake');
+            setTimeout(() => {
+                this.classList.remove('animate-shake');
+                alert('Thank you for your message! I will get back to you soon.');
+                this.reset();
+            }, 500);
+        });
+
+        // Draggable horizontal scroll for skills
+        const skillScrollContainer = document.getElementById('skillScrollContainer');
+        const skillScrollTrack = document.getElementById('skillScrollTrack');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        skillScrollContainer.addEventListener('mousedown', (e) => {
+            isDown = true;
+            skillScrollContainer.classList.add('active');
+            startX = e.pageX - skillScrollContainer.offsetLeft;
+            scrollLeft = skillScrollContainer.scrollLeft;
+        });
+
+        skillScrollContainer.addEventListener('mouseleave', () => {
+            isDown = false;
+            skillScrollContainer.classList.remove('active');
+        });
+
+        skillScrollContainer.addEventListener('mouseup', () => {
+            isDown = false;
+            skillScrollContainer.classList.remove('active');
+        });
+
+        skillScrollContainer.addEventListener('mousemove', (e) => {
+            if(!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - skillScrollContainer.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll speed multiplier
+            skillScrollContainer.scrollLeft = scrollLeft - walk;
+        });
+
+        // Touch events for mobile
+        skillScrollContainer.addEventListener('touchstart', (e) => {
+            isDown = true;
+            startX = e.touches[0].pageX - skillScrollContainer.offsetLeft;
+            scrollLeft = skillScrollContainer.scrollLeft;
+        });
+
+        skillScrollContainer.addEventListener('touchend', () => {
+            isDown = false;
+        });
+
+        skillScrollContainer.addEventListener('touchmove', (e) => {
+            if(!isDown) return;
+            const x = e.touches[0].pageX - skillScrollContainer.offsetLeft;
+            const walk = (x - startX) * 2;
+            skillScrollContainer.scrollLeft = scrollLeft - walk;
+        });
+    </script>
+</body>
 </html>
