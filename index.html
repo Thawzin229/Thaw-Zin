@@ -295,6 +295,71 @@
             bottom: 0;
             background: linear-gradient(45deg, rgba(0,0,0,0.1) 0%, transparent 100%);
         }
+        
+        /* Mobile-specific improvements */
+        @media (max-width: 768px) {
+            .hero-content {
+                text-align: center;
+                padding-top: 2rem;
+            }
+            .hero-terminal {
+                margin-top: 2rem;
+                transform: scale(0.9);
+            }
+            .typewriter-text {
+                white-space: normal;
+                border-right: none;
+                animation: none;
+                overflow: visible;
+                width: 100%;
+            }
+            .terminal-window {
+                width: 100%;
+                max-width: 350px;
+                margin: 0 auto;
+            }
+            .terminal-content {
+                padding: 15px;
+                font-size: 0.9rem;
+            }
+            .skill-item {
+                width: 110px;
+                padding: 1rem 0.5rem;
+            }
+            .project-card {
+                margin-bottom: 1.5rem;
+            }
+            .mobile-text-center {
+                text-align: center;
+            }
+            .mobile-px-4 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .mobile-py-8 {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .hero-buttons a {
+                width: 100%;
+                text-align: center;
+            }
+            .skill-item {
+                width: 100px;
+                margin: 0 0.5rem;
+            }
+            .terminal-content {
+                font-size: 0.8rem;
+                padding: 12px;
+            }
+        }
     </style>
 </head>
 <body class="bg-white text-gray-900 font-sans overflow-x-hidden">
@@ -302,14 +367,14 @@
     <div class="animated-bg"></div>
     
     <!-- Animated Background Shapes -->
-    <div class="floating-shape" style="width: 100px; height: 100px; top: 10%; left: 5%; animation-delay: 0s;"></div>
-    <div class="floating-shape" style="width: 150px; height: 150px; top: 60%; right: 10%; animation-delay: 2s;"></div>
-    <div class="floating-shape" style="width: 80px; height: 80px; bottom: 20%; left: 15%; animation-delay: 4s;"></div>
+    <div class="floating-shape hidden md:block" style="width: 100px; height: 100px; top: 10%; left: 5%; animation-delay: 0s;"></div>
+    <div class="floating-shape hidden md:block" style="width: 150px; height: 150px; top: 60%; right: 10%; animation-delay: 2s;"></div>
+    <div class="floating-shape hidden md:block" style="width: 80px; height: 80px; bottom: 20%; left: 15%; animation-delay: 4s;"></div>
 
     <!-- Navigation -->
     <nav class="fixed w-full bg-white/90 backdrop-blur-sm z-50 py-4 border-b border-gray-200">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold font-mono gradient-text animate-pulse">THAW_ZIN<span class="text-gray-900">.dev</span></a>
+        <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
+            <a href="#" class="text-lg md:text-xl font-bold font-mono gradient-text animate-pulse">THAW_ZIN<span class="text-gray-900">.dev</span></a>
             <div class="hidden md:flex space-x-8">
                 <a href="#home" class="nav-link font-medium">Home</a>
                 <a href="#experience" class="nav-link font-medium">Experience</a>
@@ -318,101 +383,108 @@
                 <a href="#contact" class="nav-link font-medium">Contact</a>
             </div>
             <div class="md:hidden">
-                <button id="menu-toggle" class="text-gray-900 animate-bounce">
+                <button id="menu-toggle" class="text-gray-900">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-6 border-t border-gray-200">
-            <a href="#home" class="block py-2 nav-link animate-slide-in-left">Home</a>
-            <a href="#experience" class="block py-2 nav-link animate-slide-in-left" style="animation-delay: 0.1s">Experience</a>
-            <a href="#skills" class="block py-2 nav-link animate-slide-in-left" style="animation-delay: 0.2s">Skills</a>
-            <a href="#projects" class="block py-2 nav-link animate-slide-in-left" style="animation-delay: 0.3s">Projects</a>
-            <a href="#contact" class="block py-2 nav-link animate-slide-in-left" style="animation-delay: 0.4s">Contact</a>
+            <a href="#home" class="block py-3 nav-link animate-slide-in-left border-b border-gray-100">Home</a>
+            <a href="#experience" class="block py-3 nav-link animate-slide-in-left border-b border-gray-100" style="animation-delay: 0.1s">Experience</a>
+            <a href="#skills" class="block py-3 nav-link animate-slide-in-left border-b border-gray-100" style="animation-delay: 0.2s">Skills</a>
+            <a href="#projects" class="block py-3 nav-link animate-slide-in-left border-b border-gray-100" style="animation-delay: 0.3s">Projects</a>
+            <a href="#contact" class="block py-3 nav-link animate-slide-in-left" style="animation-delay: 0.4s">Contact</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center pt-16 relative">
-        <div class="container mx-auto px-6 py-20">
+    <!-- Hero Section - IMPROVED FOR MOBILE -->
+    <section id="home" class="min-h-screen flex items-center pt-16 relative mobile-py-8">
+        <div class="container mx-auto px-4 md:px-6 py-12 md:py-20">
             <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <div class="flex items-center mb-4 animate-fade-in">
+                <!-- Text Content -->
+                <div class="md:w-1/2 mb-8 md:mb-0 hero-content">
+                    <div class="flex items-center justify-center md:justify-start mb-4 animate-fade-in">
                         <span class="pulse-dot"></span>
                         <span class="text-gray-600 font-mono text-sm">Full Stack Developer</span>
                     </div>
-                    <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-slide-up">
+                    <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 animate-slide-up mobile-text-center">
                         Thaw Zin
                     </h1>
-                    <div class="typewriter-text text-xl mb-8 text-gray-700 max-w-lg font-mono">
-                        &gt; Building digital solutions for real-world problems
+                    <div class="text-lg md:text-xl mb-6 md:mb-8 text-gray-700 max-w-lg font-mono mobile-text-center mx-auto">
+                        <span class="md:typewriter-text">
+                            &gt; Building digital solutions for real-world problems
+                        </span>
                     </div>
-                    <p class="text-lg mb-8 text-gray-600 max-w-lg animate-fade-in" style="animation-delay: 0.5s">
+                    <p class="text-base md:text-lg mb-6 md:mb-8 text-gray-600 max-w-lg animate-fade-in mx-auto mobile-text-center mobile-px-4" style="animation-delay: 0.5s">
                         A passionate full-stack developer with experience in telecommunications, e-commerce, and HR systems. 
                         I build robust applications using modern technologies like Laravel, Vue.js, and Node.js.
                     </p>
-                    <div class="flex space-x-4 animate-slide-up" style="animation-delay: 0.7s">
-                        <a href="#projects" class="bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition duration-300 transform hover:scale-105 shadow-lg animate-pulse">
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start animate-slide-up hero-buttons" style="animation-delay: 0.7s">
+                        <a href="#projects" class="bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition duration-300 transform hover:scale-105 shadow-lg text-center">
                             View My Work <i class="fas fa-arrow-right ml-2"></i>
                         </a>
-                        <a href="#contact" class="border border-black text-black px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                        <a href="#contact" class="border border-black text-black px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition duration-300 transform hover:scale-105 text-center">
                             Get In Touch <i class="fas fa-paper-plane ml-2"></i>
                         </a>
                     </div>
                 </div>
-                <div class="md:w-1/2 flex justify-center">
+                
+                <!-- Terminal - IMPROVED FOR MOBILE -->
+                <div class="md:w-1/2 flex justify-center mt-8 md:mt-0 hero-terminal">
                     <div class="relative animate-float">
-                        <div class="terminal-window w-80 md:w-96 animate-tilt">
+                        <div class="terminal-window w-full max-w-sm md:max-w-md lg:max-w-lg animate-tilt">
                             <div class="terminal-header">
-                                <div class="terminal-button close"></div>
-                                <div class="terminal-button minimize"></div>
-                                <div class="terminal-button maximize"></div>
-                                <div class="text-gray-300 text-sm ml-4 font-mono">thaw-zin.dev -- bash</div>
+                                <div class="flex">
+                                    <div class="terminal-button close"></div>
+                                    <div class="terminal-button minimize"></div>
+                                    <div class="terminal-button maximize"></div>
+                                </div>
+                                <div class="text-gray-300 text-xs md:text-sm ml-2 md:ml-4 font-mono truncate">thaw-zin.dev -- bash</div>
                             </div>
                             <div class="terminal-content">
                                 <div class="code-line"><span class="terminal-prompt">thawzin@portfolio:~$</span> whoami</div>
                                 <div class="code-line">full_stack_developer</div>
-                                <div class="code-line mt-4"><span class="terminal-prompt">thawzin@portfolio:~$</span> cat experience.txt</div>
-                                <div class="code-line">Global Technology Group (5BB) - Full Stack Developer</div>
-                                <div class="code-line">Sarpaylann Book Store - Freelance Developer</div>
-                                <div class="code-line">Articles & Training Blog - Backend Developer</div>
-                                <div class="code-line mt-4"><span class="terminal-prompt">thawzin@portfolio:~$</span> <span class="terminal-cursor"></span></div>
+                                <div class="code-line mt-2 md:mt-4"><span class="terminal-prompt">thawzin@portfolio:~$</span> cat experience.txt</div>
+                                <div class="code-line text-xs md:text-sm">Global Technology Group (5BB) - Full Stack</div>
+                                <div class="code-line text-xs md:text-sm">Sarpaylann Book Store - Freelance Dev</div>
+                                <div class="code-line text-xs md:text-sm">Master Your Money - Backend Developer</div>
+                                <div class="code-line mt-2 md:mt-4"><span class="terminal-prompt">thawzin@portfolio:~$</span> <span class="terminal-cursor"></span></div>
                             </div>
                         </div>
-                        <div class="absolute -top-4 -right-4 w-16 h-16 bg-black rounded-full flex items-center justify-center animate-bounce">
-                            <i class="fas fa-code text-white text-xl"></i>
+                        <div class="absolute -top-3 -right-3 md:-top-4 md:-right-4 w-12 h-12 md:w-16 md:h-16 bg-black rounded-full flex items-center justify-center animate-bounce">
+                            <i class="fas fa-code text-white text-lg md:text-xl"></i>
                         </div>
-                        <div class="absolute -bottom-6 -left-6 w-20 h-20 border-4 border-black rounded-full animate-spin-slow"></div>
+                        <div class="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 w-16 h-16 md:w-20 md:h-20 border-4 border-black rounded-full animate-spin-slow"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <i class="fas fa-chevron-down text-2xl text-gray-700"></i>
+        <div class="absolute bottom-6 md:bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
+            <i class="fas fa-chevron-down text-xl md:text-2xl text-gray-700"></i>
         </div>
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-16 animate-slide-up">
+    <section id="experience" class="py-12 md:py-20 bg-gray-50">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12 md:mb-16 animate-slide-up mobile-text-center">
                 Professional <span class="gradient-text">Experience</span>
             </h2>
             
             <div class="max-w-4xl mx-auto">
                 <!-- Global Technology Group -->
-                <div class="mb-12 animate-slide-up">
+                <div class="mb-10 md:mb-12 animate-slide-up">
                     <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                        <h3 class="text-xl font-bold">Full Stack Developer</h3>
-                        <span class="text-gray-700 font-mono bg-gray-100 px-3 py-1 rounded-lg animate-pulse">May 2024 - Present</span>
+                        <h3 class="text-lg md:text-xl font-bold mobile-text-center md:text-left">Full Stack Developer</h3>
+                        <span class="text-gray-700 font-mono bg-gray-100 px-3 py-1 rounded-lg text-sm mt-2 md:mt-0 text-center">May 2024 - Present</span>
                     </div>
-                    <div class="flex items-center mb-2">
+                    <div class="flex items-center mb-2 justify-center md:justify-start">
                         <i class="fas fa-building text-gray-600 mr-2"></i>
                         <span class="font-medium">Global Technology Group (5BB)</span>
                     </div>
-                    <p class="text-gray-600 mb-4">Telecommunications Industry</p>
-                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <p class="text-gray-600 mb-4 text-center md:text-left">Telecommunications Industry</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 text-sm md:text-base">
                         <li>Designed and developed a new reporting portal (5BB), Ticketing API System (GTG) and Recruitment HR Job Portal using Laravel, Vue.js, REST API and Inertia.js</li>
                         <li>Maintained and enhanced features for the HR department Software (KPI), OS Ticketing and University of Wisdom Land (UWL) systems using PHP and JQuery</li>
                         <li>Maintained and configured Apache servers to ensure smooth deployment and operation of applications</li>
@@ -420,17 +492,17 @@
                 </div>
                 
                 <!-- Sarpaylann Book Store -->
-                <div class="mb-12 animate-slide-up" style="animation-delay: 0.1s">
+                <div class="mb-10 md:mb-12 animate-slide-up" style="animation-delay: 0.1s">
                     <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                        <h3 class="text-xl font-bold">Backend Developer</h3>
-                        <span class="text-gray-700 font-mono bg-gray-100 px-3 py-1 rounded-lg">Jan 2024 - June 2024</span>
+                        <h3 class="text-lg md:text-xl font-bold mobile-text-center md:text-left">Backend Developer</h3>
+                        <span class="text-gray-700 font-mono bg-gray-100 px-3 py-1 rounded-lg text-sm mt-2 md:mt-0 text-center">Jan 2024 - June 2024</span>
                     </div>
-                    <div class="flex items-center mb-2">
+                    <div class="flex items-center mb-2 justify-center md:justify-start">
                         <i class="fas fa-book text-gray-600 mr-2"></i>
                         <span class="font-medium">Sarpaylann Book Store</span>
                     </div>
-                    <p class="text-gray-600 mb-4">E-commerce Industry</p>
-                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <p class="text-gray-600 mb-4 text-center md:text-left">E-commerce Industry</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 text-sm md:text-base">
                         <li>Developed and deployed a fully functional online bookstore website aimed to provide a user-friendly interface</li>
                         <li>Integrated back-end functionality with PHP and Laravel framework, facilitating secure user authentication, order processing, and payment handling</li>
                     </ul>
@@ -439,15 +511,15 @@
                 <!-- Articles and Training Blog -->
                 <div class="animate-slide-up" style="animation-delay: 0.2s">
                     <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                        <h3 class="text-xl font-bold">Backend Developer</h3>
-                        <span class="text-gray-700 font-mono bg-gray-100 px-3 py-1 rounded-lg">June 2025 - present</span>
+                        <h3 class="text-lg md:text-xl font-bold mobile-text-center md:text-left">Backend Developer</h3>
+                        <span class="text-gray-700 font-mono bg-gray-100 px-3 py-1 rounded-lg text-sm mt-2 md:mt-0 text-center">June 2025 - present</span>
                     </div>
-                    <div class="flex items-center mb-2">
+                    <div class="flex items-center mb-2 justify-center md:justify-start">
                         <i class="fas fa-blog text-gray-600 mr-2"></i>
                         <span class="font-medium">Master Your Money</span>
                     </div>
-                    <p class="text-gray-600 mb-4">Content And Learning Management Industry</p>
-                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <p class="text-gray-600 mb-4 text-center md:text-left">Content And Learning Management Industry</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 text-sm md:text-base">
                         <li>Developed robust RESTful APIs for an article blog platform using PHP/Laravel</li>
                         <li>Integrated authentication/authorization to secure API endpoints</li>
                     </ul>
@@ -457,97 +529,97 @@
     </section>
 
     <!-- Skills Section - UPDATED WITH DRAGGABLE HORIZONTAL SCROLL -->
-    <section id="skills" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-16 animate-slide-up">
+    <section id="skills" class="py-12 md:py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12 md:mb-16 animate-slide-up mobile-text-center">
                 Technical <span class="gradient-text">Skills</span>
             </h2>
             
             <!-- Horizontal Draggable Skills -->
-            <div class="mb-16">
-                <h3 class="text-xl font-bold mb-8 text-center animate-fade-in">Technologies & Tools</h3>
+            <div class="mb-12 md:mb-16">
+                <h3 class="text-lg md:text-xl font-bold mb-6 md:mb-8 text-center animate-fade-in">Technologies & Tools</h3>
                 <div class="skill-scroll-container" id="skillScrollContainer">
                     <div class="skill-scroll-track" id="skillScrollTrack">
                         <!-- Skills -->
                         <div class="skill-item">
-                            <i class="fab fa-html5 text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium">HTML5</span>
+                            <i class="fab fa-html5 text-3xl md:text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium text-sm md:text-base">HTML5</span>
                         </div>
                         <div class="skill-item">
-                            <i class="fab fa-css3-alt text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium">CSS3</span>
-                        </div>
-                                      <div class="skill-item">
-                            <i class="fab fa-bootstrap text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium">Bootstrap</span>
+                            <i class="fab fa-css3-alt text-3xl md:text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium text-sm md:text-base">CSS3</span>
                         </div>
                         <div class="skill-item">
-                            <i class="fab fa-js text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium">JavaScript</span>
+                            <i class="fab fa-bootstrap text-3xl md:text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium text-sm md:text-base">Bootstrap</span>
                         </div>
                         <div class="skill-item">
-                            <i class="fab fa-js text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium">JQuery</span>
+                            <i class="fab fa-js text-3xl md:text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium text-sm md:text-base">JavaScript</span>
                         </div>
                         <div class="skill-item">
-                            <i class="fab fa-vuejs text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium">Vue.js</span>
+                            <i class="fab fa-js text-3xl md:text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium text-sm md:text-base">JQuery</span>
                         </div>
                         <div class="skill-item">
-                            <i class="fab fa-php text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium">PHP</span>
+                            <i class="fab fa-vuejs text-3xl md:text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium text-sm md:text-base">Vue.js</span>
                         </div>
                         <div class="skill-item">
-                            <i class="fab fa-laravel text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium">Laravel</span>
+                            <i class="fab fa-php text-3xl md:text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium text-sm md:text-base">PHP</span>
                         </div>
                         <div class="skill-item">
-                            <i class="fab fa-node-js text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium">Node.js</span>
+                            <i class="fab fa-laravel text-3xl md:text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium text-sm md:text-base">Laravel</span>
                         </div>
                         <div class="skill-item">
-                            <i class="fas fa-database text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium">SQL</span>
+                            <i class="fab fa-node-js text-3xl md:text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium text-sm md:text-base">Node.js</span>
                         </div>
                         <div class="skill-item">
-                            <i class="fab fa-git-alt text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium">Git</span>
+                            <i class="fas fa-database text-3xl md:text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium text-sm md:text-base">SQL</span>
                         </div>
                         <div class="skill-item">
-                            <i class="fab fa-docker text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium">Docker</span>
+                            <i class="fab fa-git-alt text-3xl md:text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium text-sm md:text-base">Git</span>
                         </div>
                         <div class="skill-item">
-                            <i class="fas fa-server text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium">DigitalOcean</span>
+                            <i class="fab fa-docker text-3xl md:text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium text-sm md:text-base">Docker</span>
                         </div>
                         <div class="skill-item">
-                            <i class="fas fa-server text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium">Apache</span>
+                            <i class="fas fa-server text-3xl md:text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium text-sm md:text-base">DigitalOcean</span>
                         </div>
                         <div class="skill-item">
-                            <i class="fas fa-server text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium">Nginx</span>
+                            <i class="fas fa-server text-3xl md:text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium text-sm md:text-base">Apache</span>
                         </div>
                         <div class="skill-item">
-                            <i class="fas fa-project-diagram text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium">OOP</span>
+                            <i class="fas fa-server text-3xl md:text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium text-sm md:text-base">Nginx</span>
                         </div>
                         <div class="skill-item">
-                            <i class="fas fa-code-branch text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium">Inertia.js</span>
+                            <i class="fas fa-project-diagram text-3xl md:text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium text-sm md:text-base">OOP</span>
                         </div>
                         <div class="skill-item">
-                            <i class="fas fa-code text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium">REST API</span>
+                            <i class="fas fa-code-branch text-3xl md:text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium text-sm md:text-base">Inertia.js</span>
                         </div>
                         <div class="skill-item">
-                            <i class="fas fa-shield-alt text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium">Security</span>
+                            <i class="fas fa-code text-3xl md:text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium text-sm md:text-base">REST API</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-shield-alt text-3xl md:text-4xl text-gray-700 mb-2"></i>
+                            <span class="font-medium text-sm md:text-base">Security</span>
                         </div>
                     </div>
                 </div>
-                <div class="text-center mt-4 text-gray-500 text-sm">
+                <div class="text-center mt-4 text-gray-500 text-xs md:text-sm">
                     <i class="fas fa-arrows-left-right mr-2"></i> Drag to scroll through skills
                 </div>
             </div>
@@ -555,146 +627,116 @@
     </section>
 
     <!-- Projects Section - IMPROVED PROJECT CARDS -->
-    <section id="projects" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-16 animate-slide-up">
+    <section id="projects" class="py-12 md:py-20 bg-gray-50">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12 md:mb-16 animate-slide-up mobile-text-center">
                 Featured <span class="gradient-text">Projects</span>
             </h2>
             
             <!-- Industry Projects -->
-            <div class="mb-16">
-                <h3 class="text-2xl font-bold mb-8 text-center animate-slide-in-left">Industry Experience Projects</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="mb-12 md:mb-16">
+                <h3 class="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center animate-slide-in-left">Industry Experience Projects</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     <!-- 5BB Reporting Portal -->
                     <div class="project-card animate-slide-up">
                         <div class="project-image">
-                            <i class="fas fa-chart-bar text-5xl text-white z-10"></i>
+                            <i class="fas fa-chart-bar text-4xl md:text-5xl text-white z-10"></i>
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">5BB Reporting Portal</h3>
-                            <p class="text-gray-700 mb-4">A comprehensive reporting portal for telecommunications data analysis and visualization with real-time dashboards.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="project-badge industry">Industry Project</span>
-                                <span class="project-badge">Laravel</span>
-                                <span class="project-badge">Vue.js</span>
-                                <span class="project-badge">Inertia.js</span>
-                                <span class="project-badge">REST API</span>
+                        <div class="p-4 md:p-6">
+                            <h3 class="text-lg md:text-xl font-bold mb-2">5BB Reporting Portal</h3>
+                            <p class="text-gray-700 mb-4 text-sm md:text-base">A comprehensive reporting portal for telecommunications data analysis and visualization with real-time dashboards.</p>
+                            <div class="flex flex-wrap gap-1 md:gap-2 mb-4">
+                                <span class="project-badge industry text-xs">Industry</span>
+                                <span class="project-badge text-xs">Laravel</span>
+                                <span class="project-badge text-xs">Vue.js</span>
+                                <span class="project-badge text-xs">Inertia.js</span>
+                                <span class="project-badge text-xs">REST API</span>
                             </div>
-                            <!-- <div class="flex space-x-4 mt-4">
-                                <a href="#" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300">
-                                    <i class="fas fa-external-link-alt mr-2"></i> View Project
-                                </a>
-                            </div> -->
                         </div>
                     </div>
                     
                     <!-- KPI System -->
                     <div class="project-card animate-slide-up" style="animation-delay: 0.1s">
                         <div class="project-image">
-                            <i class="fas fa-tachometer-alt text-5xl text-white z-10"></i>
+                            <i class="fas fa-tachometer-alt text-4xl md:text-5xl text-white z-10"></i>
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">KPI System</h3>
-                            <p class="text-gray-700 mb-4">Key Performance Indicator tracking system for HR department with analytics, reporting, and performance insights.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="project-badge industry">Industry Project</span>
-                                <span class="project-badge">PHP</span>
-                                <span class="project-badge">jQuery</span>
-                                <span class="project-badge">SQL</span>
+                        <div class="p-4 md:p-6">
+                            <h3 class="text-lg md:text-xl font-bold mb-2">KPI System</h3>
+                            <p class="text-gray-700 mb-4 text-sm md:text-base">Key Performance Indicator tracking system for HR department with analytics, reporting, and performance insights.</p>
+                            <div class="flex flex-wrap gap-1 md:gap-2 mb-4">
+                                <span class="project-badge industry text-xs">Industry</span>
+                                <span class="project-badge text-xs">PHP</span>
+                                <span class="project-badge text-xs">jQuery</span>
+                                <span class="project-badge text-xs">SQL</span>
                             </div>
-                            <!-- <div class="flex space-x-4 mt-4">
-                                <a href="#" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300">
-                                    <i class="fas fa-external-link-alt mr-2"></i> View Project
-                                </a>
-                            </div> -->
                         </div>
                     </div>
                     
                     <!-- Recruitment HR Portal -->
                     <div class="project-card animate-slide-up" style="animation-delay: 0.2s">
                         <div class="project-image">
-                            <i class="fas fa-users text-5xl text-white z-10"></i>
+                            <i class="fas fa-users text-4xl md:text-5xl text-white z-10"></i>
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Recruitment HR Portal</h3>
-                            <p class="text-gray-700 mb-4">Job portal and recruitment management system with applicant tracking and interview scheduling.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="project-badge industry">Industry Project</span>
-                                <span class="project-badge">Laravel</span>
-                                <span class="project-badge">Vue.js</span>
-                                <span class="project-badge">Inertia.js</span>
+                        <div class="p-4 md:p-6">
+                            <h3 class="text-lg md:text-xl font-bold mb-2">Recruitment HR Portal</h3>
+                            <p class="text-gray-700 mb-4 text-sm md:text-base">Job portal and recruitment management system with applicant tracking and interview scheduling.</p>
+                            <div class="flex flex-wrap gap-1 md:gap-2 mb-4">
+                                <span class="project-badge industry text-xs">Industry</span>
+                                <span class="project-badge text-xs">Laravel</span>
+                                <span class="project-badge text-xs">Vue.js</span>
+                                <span class="project-badge text-xs">Inertia.js</span>
                             </div>
-                            <!-- <div class="flex space-x-4 mt-4">
-                                <a href="#" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300">
-                                    <i class="fas fa-external-link-alt mr-2"></i> View Project
-                                </a>
-                            </div> -->
                         </div>
                     </div>
                     
                     <!-- OS Ticketing System -->
                     <div class="project-card animate-slide-up" style="animation-delay: 0.3s">
                         <div class="project-image">
-                            <i class="fas fa-ticket-alt text-5xl text-white z-10"></i>
+                            <i class="fas fa-ticket-alt text-4xl md:text-5xl text-white z-10"></i>
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">OS Ticketing System</h3>
-                            <p class="text-gray-700 mb-4">Admin panel for in-house issue tracking and resolution management with priority levels and SLA tracking.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="project-badge industry">Industry Project</span>
-                                <span class="project-badge">PHP</span>
-                                <span class="project-badge">SQL</span>
-                                <span class="project-badge">Admin Panel</span>
+                        <div class="p-4 md:p-6">
+                            <h3 class="text-lg md:text-xl font-bold mb-2">OS Ticketing System</h3>
+                            <p class="text-gray-700 mb-4 text-sm md:text-base">Admin panel for in-house issue tracking and resolution management with priority levels and SLA tracking.</p>
+                            <div class="flex flex-wrap gap-1 md:gap-2 mb-4">
+                                <span class="project-badge industry text-xs">Industry</span>
+                                <span class="project-badge text-xs">PHP</span>
+                                <span class="project-badge text-xs">SQL</span>
+                                <span class="project-badge text-xs">Admin Panel</span>
                             </div>
-                            <!-- <div class="flex space-x-4 mt-4">
-                                <a href="#" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300">
-                                    <i class="fas fa-external-link-alt mr-2"></i> View Project
-                                </a>
-                            </div> -->
                         </div>
                     </div>
                     
                     <!-- GTG Ticketing API -->
                     <div class="project-card animate-slide-up" style="animation-delay: 0.4s">
                         <div class="project-image">
-                            <i class="fas fa-code text-5xl text-white z-10"></i>
+                            <i class="fas fa-code text-4xl md:text-5xl text-white z-10"></i>
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">GTG Ticketing API</h3>
-                            <p class="text-gray-700 mb-4">Laravel API backend for mobile app ticketing system with authentication, real-time notifications, and reporting.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="project-badge industry">Industry Project</span>
-                                <span class="project-badge">Laravel</span>
-                                <span class="project-badge">REST API</span>
-                                <span class="project-badge">Authentication</span>
+                        <div class="p-4 md:p-6">
+                            <h3 class="text-lg md:text-xl font-bold mb-2">GTG Ticketing API</h3>
+                            <p class="text-gray-700 mb-4 text-sm md:text-base">Laravel API backend for mobile app ticketing system with authentication, real-time notifications, and reporting.</p>
+                            <div class="flex flex-wrap gap-1 md:gap-2 mb-4">
+                                <span class="project-badge industry text-xs">Industry</span>
+                                <span class="project-badge text-xs">Laravel</span>
+                                <span class="project-badge text-xs">REST API</span>
+                                <span class="project-badge text-xs">Authentication</span>
                             </div>
-                            <!-- <div class="flex space-x-4 mt-4">
-                                <a href="#" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300">
-                                    <i class="fas fa-external-link-alt mr-2"></i> View Project
-                                </a>
-                            </div> -->
                         </div>
                     </div>
                     
                     <!-- University of Wisdom Land -->
                     <div class="project-card animate-slide-up" style="animation-delay: 0.5s">
                         <div class="project-image">
-                            <i class="fas fa-university text-5xl text-white z-10"></i>
+                            <i class="fas fa-university text-4xl md:text-5xl text-white z-10"></i>
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">University of Wisdom Land</h3>
-                            <p class="text-gray-700 mb-4">University management system with course registration, student management, and academic reporting features.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="project-badge industry">Industry Project</span>
-                                <span class="project-badge">PHP</span>
-                                <span class="project-badge">jQuery</span>
-                                <span class="project-badge">SQL</span>
+                        <div class="p-4 md:p-6">
+                            <h3 class="text-lg md:text-xl font-bold mb-2">University of Wisdom Land</h3>
+                            <p class="text-gray-700 mb-4 text-sm md:text-base">University management system with course registration, student management, and academic reporting features.</p>
+                            <div class="flex flex-wrap gap-1 md:gap-2 mb-4">
+                                <span class="project-badge industry text-xs">Industry</span>
+                                <span class="project-badge text-xs">PHP</span>
+                                <span class="project-badge text-xs">jQuery</span>
+                                <span class="project-badge text-xs">SQL</span>
                             </div>
-                            <!-- <div class="flex space-x-4 mt-4">
-                                <a href="#" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300">
-                                    <i class="fas fa-external-link-alt mr-2"></i> View Project
-                                </a>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -702,25 +744,25 @@
             
             <!-- Freelance Projects -->
             <div>
-                <h3 class="text-2xl font-bold mb-8 text-center animate-slide-in-right">Freelance Projects</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <h3 class="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center animate-slide-in-right">Freelance Projects</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                     <!-- Sarpaylann Book Store -->
                     <div class="project-card animate-slide-up" style="animation-delay: 0.6s">
                         <div class="project-image">
-                            <i class="fas fa-book text-5xl text-white z-10"></i>
+                            <i class="fas fa-book text-4xl md:text-5xl text-white z-10"></i>
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Sarpaylann Book Store</h3>
-                            <p class="text-gray-700 mb-4">A fully functional e-commerce platform for book sales with secure payment processing, inventory management, and order tracking.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="project-badge freelance">Freelance Project</span>
-                                <span class="project-badge">PHP</span>
-                                <span class="project-badge">Laravel</span>
-                                <span class="project-badge">REST API</span>
-                                <span class="project-badge">E-commerce</span>
+                        <div class="p-4 md:p-6">
+                            <h3 class="text-lg md:text-xl font-bold mb-2">Sarpaylann Book Store</h3>
+                            <p class="text-gray-700 mb-4 text-sm md:text-base">A fully functional e-commerce platform for book sales with secure payment processing, inventory management, and order tracking.</p>
+                            <div class="flex flex-wrap gap-1 md:gap-2 mb-4">
+                                <span class="project-badge freelance text-xs">Freelance</span>
+                                <span class="project-badge text-xs">PHP</span>
+                                <span class="project-badge text-xs">Laravel</span>
+                                <span class="project-badge text-xs">REST API</span>
+                                <span class="project-badge text-xs">E-commerce</span>
                             </div>
                             <div class="flex space-x-4 mt-4">
-                                <a href="https://www.sarpaylann.com" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300" target="blank">
+                                <a href="https://www.sarpaylann.com" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300 text-sm md:text-base" target="blank">
                                     <i class="fas fa-external-link-alt mr-2"></i> View Project
                                 </a>
                             </div>
@@ -730,20 +772,20 @@
                     <!-- HeinZaw Blog -->
                     <div class="project-card animate-slide-up" style="animation-delay: 0.7s">
                         <div class="project-image">
-                            <i class="fas fa-dollar text-5xl text-white z-10"></i>
+                            <i class="fas fa-dollar text-4xl md:text-5xl text-white z-10"></i>
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Master Your Money</h3>
-                            <p class="text-gray-700 mb-4">Articles and training blog platform with content management, user authentication, comments system, and SEO optimization.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="project-badge freelance">Freelance Project</span>
-                                <span class="project-badge">PHP</span>
-                                <span class="project-badge">Laravel</span>
-                                <span class="project-badge">REST API</span>
-                                <span class="project-badge">Learning Platform</span>
+                        <div class="p-4 md:p-6">
+                            <h3 class="text-lg md:text-xl font-bold mb-2">Master Your Money</h3>
+                            <p class="text-gray-700 mb-4 text-sm md:text-base">Articles and training blog platform with content management, user authentication, comments system, and SEO optimization.</p>
+                            <div class="flex flex-wrap gap-1 md:gap-2 mb-4">
+                                <span class="project-badge freelance text-xs">Freelance</span>
+                                <span class="project-badge text-xs">PHP</span>
+                                <span class="project-badge text-xs">Laravel</span>
+                                <span class="project-badge text-xs">REST API</span>
+                                <span class="project-badge text-xs">Learning Platform</span>
                             </div>
                             <div class="flex space-x-4 mt-4">
-                                <a href="https://masteryourmoneymm.com" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300" target="blank">
+                                <a href="https://masteryourmoneymm.com" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300 text-sm md:text-base" target="blank">
                                     <i class="fas fa-external-link-alt mr-2"></i> View Project
                                 </a>
                             </div>
@@ -755,49 +797,49 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-16 animate-slide-up">
+    <section id="contact" class="py-12 md:py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12 md:mb-16 animate-slide-up mobile-text-center">
                 Get In <span class="gradient-text">Touch</span>
             </h2>
             <div class="max-w-3xl mx-auto">
-                <div class="bg-gray-50 rounded-xl shadow-lg p-8 animate-glow">
+                <div class="bg-gray-50 rounded-xl shadow-lg p-6 md:p-8 animate-glow">
                     <form id="contact-form">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
                             <div>
-                                <label for="name" class="block text-gray-700 mb-2 font-medium">Your Name</label>
-                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300" required>
+                                <label for="name" class="block text-gray-700 mb-2 font-medium text-sm md:text-base">Your Name</label>
+                                <input type="text" id="name" class="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300 text-sm md:text-base" required>
                             </div>
                             <div>
-                                <label for="email" class="block text-gray-700 mb-2 font-medium">Your Email</label>
-                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300" required>
+                                <label for="email" class="block text-gray-700 mb-2 font-medium text-sm md:text-base">Your Email</label>
+                                <input type="email" id="email" class="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300 text-sm md:text-base" required>
                             </div>
                         </div>
-                        <div class="mb-6">
-                            <label for="subject" class="block text-gray-700 mb-2 font-medium">Subject</label>
-                            <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300" required>
+                        <div class="mb-4 md:mb-6">
+                            <label for="subject" class="block text-gray-700 mb-2 font-medium text-sm md:text-base">Subject</label>
+                            <input type="text" id="subject" class="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300 text-sm md:text-base" required>
                         </div>
-                        <div class="mb-6">
-                            <label for="message" class="block text-gray-700 mb-2 font-medium">Your Message</label>
-                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300" required></textarea>
+                        <div class="mb-4 md:mb-6">
+                            <label for="message" class="block text-gray-700 mb-2 font-medium text-sm md:text-base">Your Message</label>
+                            <textarea id="message" rows="4" class="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300 text-sm md:text-base" required></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-gray-800 transition duration-300 flex items-center justify-center shadow-lg transform hover:scale-105">
+                        <button type="submit" class="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-gray-800 transition duration-300 flex items-center justify-center shadow-lg transform hover:scale-105 text-sm md:text-base">
                             <i class="fas fa-paper-plane mr-2"></i> Send Message
                         </button>
                     </form>
                 </div>
-                <div class="flex justify-center space-x-8 mt-12">
+                <div class="flex justify-center space-x-6 md:space-x-8 mt-8 md:mt-12">
                     <a href="https://github.com/Thawzin229" class="text-gray-700 hover:text-black transition duration-300 transform hover:scale-125">
-                        <i class="fab fa-github text-2xl"></i>
+                        <i class="fab fa-github text-xl md:text-2xl"></i>
                     </a>
                     <a href="https://www.linkedin.com/in/thaw-zin-4493572aa/" class="text-gray-700 hover:text-black transition duration-300 transform hover:scale-125">
-                        <i class="fab fa-linkedin text-2xl"></i>
+                        <i class="fab fa-linkedin text-xl md:text-2xl"></i>
                     </a>
                     <a href="mailto:thawzin842019@gmail.com" class="text-gray-700 hover:text-black transition duration-300 transform hover:scale-125">
-                        <i class="fas fa-envelope text-2xl"></i>
+                        <i class="fas fa-envelope text-xl md:text-2xl"></i>
                     </a>
                     <a href="tel:09696629061" class="text-gray-700 hover:text-black transition duration-300 transform hover:scale-125">
-                        <i class="fas fa-phone text-2xl"></i>
+                        <i class="fas fa-phone text-xl md:text-2xl"></i>
                     </a>
                 </div>
             </div>
@@ -805,10 +847,10 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black text-white py-8">
-        <div class="container mx-auto px-6 text-center">
-            <p class="font-mono">&copy; 2025 Thaw Zin. All rights reserved.</p>
-            <p class="mt-2 text-gray-400">Crafting digital experiences with code and creativity.</p>
+    <footer class="bg-black text-white py-6 md:py-8">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <p class="font-mono text-sm md:text-base">&copy; 2025 Thaw Zin. All rights reserved.</p>
+            <p class="mt-2 text-gray-400 text-xs md:text-sm">Crafting digital experiences with code and creativity.</p>
         </div>
     </footer>
 
