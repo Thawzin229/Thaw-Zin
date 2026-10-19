@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -18,294 +19,517 @@
                     animation: {
                         'fade-in': 'fadeIn 0.8s ease-in-out',
                         'slide-up': 'slideUp 0.6s ease-out',
-                        'slide-in-left': 'slideInLeft 0.8s ease-out',
-                        'slide-in-right': 'slideInRight 0.8s ease-out',
                         'float': 'float 6s ease-in-out infinite',
                         'pulse-slow': 'pulse 3s ease-in-out infinite',
                         'typewriter': 'typewriter 4s steps(40) 1s 1 normal both',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
                         'terminal-blink': 'terminalBlink 1s infinite',
-                        'bounce-slow': 'bounce 2s infinite',
-                        'spin-slow': 'spin 3s linear infinite',
                         'shake': 'shake 0.5s ease-in-out',
-                        'tilt': 'tilt 10s infinite linear',
-                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
                     },
                     keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        slideUp: {
-                            '0%': { transform: 'translateY(30px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
-                        },
-                        slideInLeft: {
-                            '0%': { transform: 'translateX(-50px)', opacity: '0' },
-                            '100%': { transform: 'translateX(0)', opacity: '1' },
-                        },
-                        slideInRight: {
-                            '0%': { transform: 'translateX(50px)', opacity: '0' },
-                            '100%': { transform: 'translateX(0)', opacity: '1' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-15px)' },
-                        },
-                        typewriter: {
-                            'from': { width: '0' },
-                            'to': { width: '100%' },
-                        },
-                        glow: {
-                            'from': { boxShadow: '0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #e5e5e5' },
-                            'to': { boxShadow: '0 0 10px #ffffff, 0 0 15px #e5e5e5, 0 0 20px #e5e5e5, 0 0 25px #e5e5e5' },
-                        },
-                        terminalBlink: {
-                            '0%, 100%': { opacity: '1' },
-                            '50%': { opacity: '0' },
-                        },
-                        shake: {
-                            '0%, 100%': { transform: 'translateX(0)' },
-                            '10%, 30%, 50%, 70%, 90%': { transform: 'translateX(-5px)' },
-                            '20%, 40%, 60%, 80%': { transform: 'translateX(5px)' },
-                        },
-                        tilt: {
-                            '0%, 50%, 100%': { transform: 'rotate(0deg)' },
-                            '25%': { transform: 'rotate(1deg)' },
-                            '75%': { transform: 'rotate(-1deg)' },
-                        },
-                        pulseGlow: {
-                            '0%, 100%': { 
-                                transform: 'scale(1)',
-                                boxShadow: '0 0 10px rgba(0,0,0,0.1)'
-                            },
-                            '50%': { 
-                                transform: 'scale(1.05)',
-                                boxShadow: '0 0 20px rgba(0,0,0,0.2)'
-                            },
-                        },
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                        slideUp: { '0%': { transform: 'translateY(30px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-15px)' } },
+                        typewriter: { 'from': { width: '0' }, 'to': { width: '100%' } },
+                        terminalBlink: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '0' } },
+                        shake: { '0%, 100%': { transform: 'translateX(0)' }, '10%, 30%, 50%, 70%, 90%': { transform: 'translateX(-5px)' }, '20%, 40%, 60%, 80%': { transform: 'translateX(5px)' } },
                     }
                 }
             }
         }
     </script>
     <style>
+        /* ========== DESIGN SYSTEM ========== */
+        :root {
+            --bg: #ffffff;
+            --bg-subtle: #f8fafc;
+            --bg-card: #ffffff;
+            --text: #0f172a;
+            --text-soft: #475569;
+            --text-muted: #94a3b8;
+            --line: #e2e8f0;
+            --accent: #0f172a;
+            --accent-contrast: #ffffff;
+            --accent-soft: #f1f5f9;
+            --highlight: #2563eb;
+            --green: #22c55e;
+        }
+        .dark {
+            --bg: #0b1120;
+            --bg-subtle: #111827;
+            --bg-card: #1a2332;
+            --text: #f1f5f9;
+            --text-soft: #cbd5e1;
+            --text-muted: #64748b;
+            --line: #1e293b;
+            --accent: #f1f5f9;
+            --accent-contrast: #0b1120;
+            --accent-soft: #1e293b;
+            --highlight: #3b82f6;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.35s ease, color 0.35s ease;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ========== TYPOGRAPHY ========== */
         .gradient-text {
-            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-soft) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--highlight);
+        }
+        .section-heading {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            color: var(--text);
+        }
+
+        /* ========== NAV ========== */
+        .nav-shell {
+            background: var(--bg);
+            border-bottom: 1px solid var(--line);
+            transition: background-color 0.35s ease, border-color 0.35s ease;
+        }
+        .nav-link {
+            position: relative;
+            color: var(--text-soft);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover { color: var(--text); }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: var(--highlight);
+            transition: width 0.25s ease;
+            border-radius: 2px;
+        }
+        .nav-link:hover::after { width: 100%; }
+        .theme-btn {
+            color: var(--text-soft);
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .theme-btn:hover {
+            background: var(--accent-soft);
+            color: var(--text);
+            border-color: var(--line);
+        }
+
+        /* ========== BUTTONS ========== */
+        .btn-primary {
+            background: var(--accent);
+            color: var(--accent-contrast);
+            border: 2px solid var(--accent);
+            padding: 0.75rem 1.75rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--line);
+            padding: 0.75rem 1.75rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .btn-outline:hover { border-color: var(--text-soft); background: var(--accent-soft); transform: translateY(-1px); }
+
+        /* ========== HERO ========== */
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse-slow 2s infinite;
         }
         .typewriter-text {
             overflow: hidden;
-            border-right: 3px solid #000;
+            border-right: 2px solid var(--text);
             white-space: nowrap;
             margin: 0 auto;
             animation: typewriter 4s steps(40) 1s 1 normal both;
         }
-        .card-hover {
-            transition: all 0.4s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-        }
-        .nav-link {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: #000;
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        .floating-shape {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, 0.05);
-            animation: float 8s ease-in-out infinite;
-        }
-        .tech-icon {
-            transition: all 0.3s ease;
-        }
-        .pulse-dot {
-            width: 10px;
-            height: 10px;
-            background: #000;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 5px;
-            animation: pulse-slow 2s infinite;
-        }
+
+        /* ========== TERMINAL ========== */
         .terminal-window {
-            background: #0a0a0a;
-            border-radius: 10px;
+            background: #0d1117;
+            border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid #1f2937;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
+        .dark .terminal-window { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6); }
         .terminal-header {
-            background: #1a1a1a;
-            padding: 10px 15px;
+            background: #161b22;
+            padding: 12px 16px;
             display: flex;
             align-items: center;
+            border-bottom: 1px solid #1f2937;
         }
-        .terminal-button {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 8px;
-        }
-        .terminal-button.close {
-            background: #ef4444;
-        }
-        .terminal-button.minimize {
-            background: #f59e0b;
-        }
-        .terminal-button.maximize {
-            background: #10b981;
-        }
-        .terminal-content {
+        .terminal-dot { width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; }
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #f59e0b; }
+        .dot-green { background: #10b981; }
+        .terminal-body {
             padding: 20px;
             font-family: 'JetBrains Mono', monospace;
-            color: #e2e8f0;
+            font-size: 0.85rem;
+            color: #c9d1d9;
+            line-height: 1.7;
         }
-        .terminal-prompt {
-            color: #10b981;
-        }
+        .terminal-prompt { color: #10b981; }
         .terminal-cursor {
             display: inline-block;
             width: 8px;
-            height: 18px;
-            background: #ffffff;
-            animation: terminal-blink 1s infinite;
+            height: 16px;
+            background: #c9d1d9;
+            animation: terminalBlink 1s infinite;
+            vertical-align: middle;
+            margin-left: 2px;
         }
-        .skill-scroll-container {
-            overflow: hidden;
-            position: relative;
-            width: 100%;
-            padding: 1rem 0;
-            cursor: grab;
+
+        /* ========== SKILLS (uniform boxes) ========== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 0.75rem;
         }
-        .skill-scroll-container:active {
-            cursor: grabbing;
-        }
-        .skill-scroll-track {
-            display: flex;
-            width: max-content;
-            transition: transform 0.3s ease;
-        }
-        .skill-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 1.5rem 1rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            margin: 0 0.75rem;
-            flex-shrink: 0;
-            width: 130px;
-            transition: all 0.3s ease;
-            border: 1px solid #f0f0f0;
-        }
-        .skill-item:hover {
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-            transform: translateY(-5px);
-        }
-        .project-badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: #f3f4f6;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-        .project-badge.freelance {
-            background: #000;
-            color: white;
-        }
-        .project-badge.industry {
-            background: #333;
-            color: white;
-        }
-        .animated-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, #f9fafb 25%, transparent 25%, transparent 75%, #f9fafb 75%, #f9fafb),
-                        linear-gradient(45deg, #f9fafb 25%, transparent 25%, transparent 75%, #f9fafb 75%, #f9fafb);
-            background-size: 60px 60px;
-            background-position: 0 0, 30px 30px;
-            opacity: 0.05;
-            z-index: -1;
-        }
-        .project-card {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
-            border: 1px solid #f5f5f5;
-            position: relative;
-        }
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #000, #333);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-        .project-card:hover::before {
-            transform: scaleX(1);
-        }
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-        .project-image {
-            height: 200px;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        .skill-tile {
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 0.65rem;
+            padding: 1rem 0.9rem;
+            background: var(--bg-card);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+            min-height: 64px;
+            height: 64px;
+            overflow: hidden;
+        }
+        .skill-tile:hover {
+            border-color: var(--text-muted);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.1);
+        }
+        .dark .skill-tile:hover {
+            box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.5);
+        }
+        .skill-tile i {
+            font-size: 1.25rem;
+            width: 1.5rem;
+            text-align: center;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+        .skill-tile span {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-soft);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* ========== PROJECT CARDS ========== */
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12);
+            border-color: var(--text-muted);
+        }
+        .dark .project-card:hover {
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.5);
+        }
+        .project-thumb {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-soft);
+            border-bottom: 1px solid var(--line);
             position: relative;
             overflow: hidden;
         }
-        .project-image::after {
+        .project-thumb i {
+            font-size: 2.25rem;
+            color: var(--text-muted);
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+        .project-card:hover .project-thumb i { opacity: 1; }
+
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--accent-soft);
+            color: var(--text-soft);
+            border: 1px solid var(--line);
+            margin: 0.15rem;
+        }
+        .badge-accent {
+            background: var(--accent);
+            color: var(--accent-contrast);
+            border-color: var(--accent);
+        }
+
+        /* ========== TIMELINE (unchanged) ========== */
+        .timeline { position: relative; padding-left: 2.5rem; }
+        .timeline::before {
             content: '';
             position: absolute;
+            left: 0.75rem;
             top: 0;
-            left: 0;
-            right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, rgba(0,0,0,0.1) 0%, transparent 100%);
+            width: 2px;
+            background: var(--line);
+            border-radius: 2px;
         }
-        
-        /* Mobile-specific improvements */
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding-left: 1.5rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.85rem;
+            top: 0.5rem;
+            width: 0.9rem;
+            height: 0.9rem;
+            border-radius: 50%;
+            background: var(--text-muted);
+            border: 2px solid var(--bg);
+            z-index: 1;
+        }
+        .dark .timeline-item::before { border-color: var(--bg-subtle); }
+        .timeline-item.current::before {
+            background: var(--green);
+            border-color: var(--bg);
+        }
+        .dark .timeline-item.current::before { border-color: var(--bg-subtle); }
+        .timeline-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.04em;
+            margin-bottom: 0.2rem;
+        }
+        .timeline-company { font-weight: 700; font-size: 1.05rem; color: var(--text); }
+        .timeline-role {
+            font-weight: 500;
+            font-size: 0.875rem;
+            color: var(--text-soft);
+            margin-bottom: 0.5rem;
+        }
+        .expand-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-soft);
+            background: var(--accent-soft);
+            padding: 0.3rem 0.9rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid var(--line);
+        }
+        .expand-btn:hover { background: var(--line); color: var(--text); }
+        .expand-btn i { transition: transform 0.3s ease; }
+        .expand-btn.active i { transform: rotate(180deg); }
+        .expand-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.45s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+        .expand-content.open { max-height: 800px; opacity: 1; margin-top: 0.75rem; }
+        .timeline-detail {
+            background: var(--bg-subtle);
+            border-left: 2px solid var(--line);
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.875rem;
+            color: var(--text-soft);
+            line-height: 1.7;
+        }
+        .timeline-detail ul { list-style-type: disc; padding-left: 1.25rem; margin-top: 0.25rem; }
+        .timeline-detail li { margin-bottom: 0.3rem; }
+
+        /* ========== EDUCATION & LANGUAGES ========== */
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 1.75rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .info-card:hover {
+            border-color: var(--text-muted);
+            box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.08);
+        }
+        .dark .info-card:hover {
+            box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.4);
+        }
+        .info-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-soft);
+            color: var(--text);
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+        .info-card:hover .info-icon {
+            background: var(--accent);
+            color: var(--accent-contrast);
+        }
+        .lang-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            background: var(--accent-soft);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-soft);
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+        .lang-chip:hover {
+            border-color: var(--text-muted);
+            background: var(--line);
+        }
+        .lang-chip i {
+            color: var(--highlight);
+            font-size: 0.9rem;
+        }
+
+        /* ========== CONTACT ========== */
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .contact-link:hover {
+            transform: translateY(-3px);
+            border-color: var(--text-muted);
+            box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.1);
+        }
+        .dark .contact-link:hover {
+            box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.5);
+        }
+        .contact-icon {
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-soft);
+            color: var(--text);
+            font-size: 1.15rem;
+            flex-shrink: 0;
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+        .contact-link:hover .contact-icon {
+            background: var(--accent);
+            color: var(--accent-contrast);
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: var(--bg-subtle);
+            border-top: 1px solid var(--line);
+            color: var(--text-soft);
+        }
+
+        /* ========== SCROLL REVEAL ========== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
+        }
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
-            .hero-content {
-                text-align: center;
-                padding-top: 2rem;
-            }
-            .hero-terminal {
-                margin-top: 2rem;
-                transform: scale(0.9);
-            }
+            .timeline { padding-left: 1.5rem; }
+            .timeline::before { left: 0.4rem; }
+            .timeline-item { padding-left: 1rem; }
+            .timeline-item::before { left: -1.4rem; width: 0.7rem; height: 0.7rem; }
+            .timeline-detail { padding: 0.75rem 1rem; }
             .typewriter-text {
                 white-space: normal;
                 border-right: none;
@@ -313,482 +537,109 @@
                 overflow: visible;
                 width: 100%;
             }
-            .terminal-window {
-                width: 100%;
-                max-width: 350px;
-                margin: 0 auto;
-            }
-            .terminal-content {
-                padding: 15px;
-                font-size: 0.9rem;
-            }
-            .skill-item {
-                width: 110px;
-                padding: 1rem 0.5rem;
-            }
-            .project-card {
-                margin-bottom: 1.5rem;
-            }
-            .mobile-text-center {
-                text-align: center;
-            }
-            .mobile-px-4 {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-            .mobile-py-8 {
-                padding-top: 2rem;
-                padding-bottom: 2rem;
-            }
+            .skills-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+            .skill-tile { padding: 0.85rem 0.75rem; min-height: 58px; height: 58px; }
+            .skill-tile span { font-size: 0.78rem; }
+            .info-card { padding: 1.25rem; }
         }
-        
-        @media (max-width: 480px) {
-            .hero-buttons {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .hero-buttons a {
-                width: 100%;
-                text-align: center;
-            }
-            .skill-item {
-                width: 100px;
-                margin: 0 0.5rem;
-            }
-            .terminal-content {
-                font-size: 0.8rem;
-                padding: 12px;
-            }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { opacity: 1; transform: none; transition: none; }
+            .animate-float, .animate-fade-in, .animate-slide-up { animation: none !important; }
         }
+
+        /* ========== SCROLLBAR ========== */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
     </style>
 </head>
-<body class="bg-white text-gray-900 font-sans overflow-x-hidden">
-    <!-- Animated Background -->
-    <div class="animated-bg"></div>
-    
-    <!-- Animated Background Shapes -->
-    <div class="floating-shape hidden md:block" style="width: 100px; height: 100px; top: 10%; left: 5%; animation-delay: 0s;"></div>
-    <div class="floating-shape hidden md:block" style="width: 150px; height: 150px; top: 60%; right: 10%; animation-delay: 2s;"></div>
-    <div class="floating-shape hidden md:block" style="width: 80px; height: 80px; bottom: 20%; left: 15%; animation-delay: 4s;"></div>
+<body class="font-sans overflow-x-hidden">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-white/90 backdrop-blur-sm z-50 py-4 border-b border-gray-200">
-        <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
-            <a href="#" class="text-lg md:text-xl font-bold font-mono gradient-text animate-pulse">THAW_ZIN<span class="text-gray-900">.dev</span></a>
-            <div class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link font-medium">Home</a>
-                <a href="#experience" class="nav-link font-medium">Experience</a>
-                <a href="#skills" class="nav-link font-medium">Skills</a>
-                <a href="#projects" class="nav-link font-medium">Projects</a>
-                <a href="#contact" class="nav-link font-medium">Contact</a>
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="fixed w-full z-50 nav-shell py-3.5">
+        <div class="max-w-6xl mx-auto px-5 md:px-8 flex justify-between items-center">
+            <a href="#" class="text-lg font-bold font-mono tracking-tight" style="color: var(--text);">
+                <span class="gradient-text">THAW_ZIN</span><span style="color: var(--text-muted);">.dev</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+                    <i class="fas fa-moon dark:hidden text-sm"></i>
+                    <i class="fas fa-sun hidden dark:inline text-sm"></i>
+                </button>
             </div>
-            <div class="md:hidden">
-                <button id="menu-toggle" class="text-gray-900">
-                    <i class="fas fa-bars text-xl"></i>
+            <div class="md:hidden flex items-center gap-3">
+                <button id="theme-toggle-mobile" class="theme-btn" aria-label="Toggle theme">
+                    <i class="fas fa-moon dark:hidden text-sm"></i>
+                    <i class="fas fa-sun hidden dark:inline text-sm"></i>
+                </button>
+                <button id="menu-toggle" style="color: var(--text);" class="p-2">
+                    <i class="fas fa-bars text-lg"></i>
                 </button>
             </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-6 border-t border-gray-200">
-            <a href="#home" class="block py-3 nav-link animate-slide-in-left border-b border-gray-100">Home</a>
-            <a href="#experience" class="block py-3 nav-link animate-slide-in-left border-b border-gray-100" style="animation-delay: 0.1s">Experience</a>
-            <a href="#skills" class="block py-3 nav-link animate-slide-in-left border-b border-gray-100" style="animation-delay: 0.2s">Skills</a>
-            <a href="#projects" class="block py-3 nav-link animate-slide-in-left border-b border-gray-100" style="animation-delay: 0.3s">Projects</a>
-            <a href="#contact" class="block py-3 nav-link animate-slide-in-left" style="animation-delay: 0.4s">Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden nav-shell border-t" style="border-color: var(--line);">
+            <div class="max-w-6xl mx-auto px-5 py-3 flex flex-col space-y-1">
+                <a href="#home" class="nav-link py-3 border-b" style="border-color: var(--line);">Home</a>
+                <a href="#experience" class="nav-link py-3 border-b" style="border-color: var(--line);">Experience</a>
+                <a href="#skills" class="nav-link py-3 border-b" style="border-color: var(--line);">Skills</a>
+                <a href="#projects" class="nav-link py-3 border-b" style="border-color: var(--line);">Projects</a>
+                <a href="#education" class="nav-link py-3 border-b" style="border-color: var(--line);">Education</a>
+                <a href="#contact" class="nav-link py-3">Contact</a>
+            </div>
         </div>
     </nav>
 
-    <!-- Hero Section - IMPROVED FOR MOBILE -->
-    <section id="home" class="min-h-screen flex items-center pt-16 relative mobile-py-8">
-        <div class="container mx-auto px-4 md:px-6 py-12 md:py-20">
-            <div class="flex flex-col md:flex-row items-center">
-                <!-- Text Content -->
-                <div class="md:w-1/2 mb-8 md:mb-0 hero-content">
-                    <div class="flex items-center justify-center md:justify-start mb-4 animate-fade-in">
+    <!-- ========== HERO ========== -->
+    <section id="home" class="min-h-screen flex items-center pt-24 pb-16" style="background: var(--bg);">
+        <div class="max-w-6xl mx-auto px-5 md:px-8 w-full">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                <div class="lg:w-1/2 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2.5 mb-5 px-3.5 py-1.5 rounded-full border" style="border-color: var(--line); background: var(--bg-subtle);">
                         <span class="pulse-dot"></span>
-                        <span class="text-gray-600 font-mono text-sm">Full Stack Developer</span>
+                        <span class="font-mono text-xs font-medium" style="color: var(--text-soft);">Available for work</span>
                     </div>
-                    <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 animate-slide-up mobile-text-center">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 animate-slide-up" style="color: var(--text);">
                         Thaw Zin
                     </h1>
-                    <div class="text-lg md:text-xl mb-6 md:mb-8 text-gray-700 max-w-lg font-mono mobile-text-center mx-auto">
-                        <span class="md:typewriter-text">
-                            &gt; Building digital solutions for real-world problems
-                        </span>
+                    <div class="text-base md:text-lg mb-5 font-mono animate-fade-in" style="color: var(--text-muted); animation-delay: 0.2s;">
+                        <span class="typewriter-text inline-block">&gt; Full Stack Developer</span>
                     </div>
-                    <p class="text-base md:text-lg mb-6 md:mb-8 text-gray-600 max-w-lg animate-fade-in mx-auto mobile-text-center mobile-px-4" style="animation-delay: 0.5s">
-                        A passionate full-stack developer with experience in telecommunications, e-commerce, and HR systems. 
-                        I build robust applications using modern technologies like Laravel, Vue.js, and Node.js.
+                    <p class="text-base md:text-lg mb-8 max-w-lg mx-auto lg:mx-0 animate-fade-in" style="color: var(--text-soft); animation-delay: 0.4s; line-height: 1.7;">
+                        Results-oriented developer with proven experience building, deploying, and maintaining real-world web applications. Skilled in Laravel, Vue.js, React, REST APIs, and MySQL.
                     </p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start animate-slide-up hero-buttons" style="animation-delay: 0.7s">
-                        <a href="#projects" class="bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition duration-300 transform hover:scale-105 shadow-lg text-center">
-                            View My Work <i class="fas fa-arrow-right ml-2"></i>
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start animate-slide-up" style="animation-delay: 0.6s;">
+                        <a href="#projects" class="btn-primary">
+                            View Projects <i class="fas fa-arrow-right text-xs"></i>
                         </a>
-                        <a href="#contact" class="border border-black text-black px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition duration-300 transform hover:scale-105 text-center">
-                            Get In Touch <i class="fas fa-paper-plane ml-2"></i>
+                        <a href="#contact" class="btn-outline">
+                            Get In Touch <i class="fas fa-paper-plane text-xs"></i>
                         </a>
                     </div>
                 </div>
-                
-                <!-- Terminal - IMPROVED FOR MOBILE -->
-                <div class="md:w-1/2 flex justify-center mt-8 md:mt-0 hero-terminal">
-                    <div class="relative animate-float">
-                        <div class="terminal-window w-full max-w-sm md:max-w-md lg:max-w-lg animate-tilt">
-                            <div class="terminal-header">
-                                <div class="flex">
-                                    <div class="terminal-button close"></div>
-                                    <div class="terminal-button minimize"></div>
-                                    <div class="terminal-button maximize"></div>
-                                </div>
-                                <div class="text-gray-300 text-xs md:text-sm ml-2 md:ml-4 font-mono truncate">thaw-zin.dev -- bash</div>
-                            </div>
-                            <div class="terminal-content">
-                                <div class="code-line"><span class="terminal-prompt">thawzin@portfolio:~$</span> whoami</div>
-                                <div class="code-line">full_stack_developer</div>
-                                <div class="code-line mt-2 md:mt-4"><span class="terminal-prompt">thawzin@portfolio:~$</span> cat experience.txt</div>
-                                <div class="code-line text-xs md:text-sm">Global Technology Group (5BB) - Full Stack</div>
-                                <div class="code-line text-xs md:text-sm">Sarpaylann Book Store - Freelance Dev</div>
-                                <div class="code-line text-xs md:text-sm">Master Your Money - Backend Developer</div>
-                                <div class="code-line mt-2 md:mt-4"><span class="terminal-prompt">thawzin@portfolio:~$</span> <span class="terminal-cursor"></span></div>
-                            </div>
+                <div class="lg:w-1/2 flex justify-center animate-float">
+                    <div class="terminal-window w-full max-w-md">
+                        <div class="terminal-header">
+                            <div class="terminal-dot dot-red"></div>
+                            <div class="terminal-dot dot-yellow"></div>
+                            <div class="terminal-dot dot-green"></div>
+                            <span class="text-xs text-gray-500 ml-3 font-mono">thaw-zin.dev — bash</span>
                         </div>
-                        <div class="absolute -top-3 -right-3 md:-top-4 md:-right-4 w-12 h-12 md:w-16 md:h-16 bg-black rounded-full flex items-center justify-center animate-bounce">
-                            <i class="fas fa-code text-white text-lg md:text-xl"></i>
-                        </div>
-                        <div class="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 w-16 h-16 md:w-20 md:h-20 border-4 border-black rounded-full animate-spin-slow"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="absolute bottom-6 md:bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
-            <i class="fas fa-chevron-down text-xl md:text-2xl text-gray-700"></i>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="py-12 md:py-20 bg-gray-50">
-        <div class="container mx-auto px-4 md:px-6">
-            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12 md:mb-16 animate-slide-up mobile-text-center">
-                Professional <span class="gradient-text">Experience</span>
-            </h2>
-            
-            <div class="max-w-4xl mx-auto">
-                <!-- Global Technology Group -->
-                <div class="mb-10 md:mb-12 animate-slide-up">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                        <h3 class="text-lg md:text-xl font-bold mobile-text-center md:text-left">Full Stack Developer</h3>
-                        <span class="text-gray-700 font-mono bg-gray-100 px-3 py-1 rounded-lg text-sm mt-2 md:mt-0 text-center">May 2023 - Present</span>
-                    </div>
-                    <div class="flex items-center mb-2 justify-center md:justify-start">
-                        <i class="fas fa-building text-gray-600 mr-2"></i>
-                        <span class="font-medium">Global Technology Group (5BB)</span>
-                    </div>
-                    <p class="text-gray-600 mb-4 text-center md:text-left">Telecommunications Industry</p>
-                    <ul class="list-disc list-inside text-gray-700 space-y-2 text-sm md:text-base">
-                        <li>Designed and developed a new reporting portal (5BB), Ticketing API System (GTG) and Recruitment HR Job Portal using Laravel, Vue.js, REST API and Inertia.js</li>
-                        <li>Maintained and enhanced features for the HR department Software (KPI), OS Ticketing and University of Wisdom Land (UWL) systems using PHP and JQuery</li>
-                        <li>Maintained and configured Apache servers to ensure smooth deployment and operation of applications</li>
-                    </ul>
-                </div>
-                
-                <!-- Sarpaylann Book Store -->
-                <div class="mb-10 md:mb-12 animate-slide-up" style="animation-delay: 0.1s">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                        <h3 class="text-lg md:text-xl font-bold mobile-text-center md:text-left">Backend Developer</h3>
-                        <span class="text-gray-700 font-mono bg-gray-100 px-3 py-1 rounded-lg text-sm mt-2 md:mt-0 text-center">Jan 2022 - Dec 2022</span>
-                    </div>
-                    <div class="flex items-center mb-2 justify-center md:justify-start">
-                        <i class="fas fa-book text-gray-600 mr-2"></i>
-                        <span class="font-medium">Sarpaylann Book Store</span>
-                    </div>
-                    <p class="text-gray-600 mb-4 text-center md:text-left">E-commerce Industry</p>
-                    <ul class="list-disc list-inside text-gray-700 space-y-2 text-sm md:text-base">
-                        <li>Developed and deployed a fully functional online bookstore website aimed to provide a user-friendly interface</li>
-                        <li>Integrated back-end functionality with PHP and Laravel framework, facilitating secure user authentication, order processing, and payment handling</li>
-                    </ul>
-                </div>
-                
-                <!-- Articles and Training Blog -->
-                <div class="animate-slide-up" style="animation-delay: 0.2s">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                        <h3 class="text-lg md:text-xl font-bold mobile-text-center md:text-left">Backend Developer</h3>
-                        <span class="text-gray-700 font-mono bg-gray-100 px-3 py-1 rounded-lg text-sm mt-2 md:mt-0 text-center">Jan 2023 - April 2023</span>
-                    </div>
-                    <div class="flex items-center mb-2 justify-center md:justify-start">
-                        <i class="fas fa-blog text-gray-600 mr-2"></i>
-                        <span class="font-medium">Master Your Money</span>
-                    </div>
-                    <p class="text-gray-600 mb-4 text-center md:text-left">Content And Learning Management Industry</p>
-                    <ul class="list-disc list-inside text-gray-700 space-y-2 text-sm md:text-base">
-                        <li>Developed robust RESTful APIs for an article blog platform using PHP/Laravel</li>
-                        <li>Integrated authentication/authorization to secure API endpoints</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section - UPDATED WITH DRAGGABLE HORIZONTAL SCROLL -->
-    <section id="skills" class="py-12 md:py-20 bg-white">
-        <div class="container mx-auto px-4 md:px-6">
-            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12 md:mb-16 animate-slide-up mobile-text-center">
-                Technical <span class="gradient-text">Skills</span>
-            </h2>
-            
-            <!-- Horizontal Draggable Skills -->
-            <div class="mb-12 md:mb-16">
-                <h3 class="text-lg md:text-xl font-bold mb-6 md:mb-8 text-center animate-fade-in">Technologies & Tools</h3>
-                <div class="skill-scroll-container" id="skillScrollContainer">
-                    <div class="skill-scroll-track" id="skillScrollTrack">
-                        <!-- Skills -->
-                        <div class="skill-item">
-                            <i class="fab fa-html5 text-3xl md:text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium text-sm md:text-base">HTML5</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-css3-alt text-3xl md:text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium text-sm md:text-base">CSS3</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-bootstrap text-3xl md:text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium text-sm md:text-base">Bootstrap</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-js text-3xl md:text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium text-sm md:text-base">JavaScript</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-js text-3xl md:text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium text-sm md:text-base">JQuery</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-vuejs text-3xl md:text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium text-sm md:text-base">Vue.js</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-php text-3xl md:text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium text-sm md:text-base">PHP</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-laravel text-3xl md:text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium text-sm md:text-base">Laravel</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-node-js text-3xl md:text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium text-sm md:text-base">Node.js</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-database text-3xl md:text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium text-sm md:text-base">SQL</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-git-alt text-3xl md:text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium text-sm md:text-base">Git</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-docker text-3xl md:text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium text-sm md:text-base">Docker</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-server text-3xl md:text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium text-sm md:text-base">DigitalOcean</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-server text-3xl md:text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium text-sm md:text-base">Apache</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-server text-3xl md:text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium text-sm md:text-base">Nginx</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-project-diagram text-3xl md:text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium text-sm md:text-base">OOP</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-code-branch text-3xl md:text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium text-sm md:text-base">Inertia.js</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-code text-3xl md:text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium text-sm md:text-base">REST API</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-shield-alt text-3xl md:text-4xl text-gray-700 mb-2"></i>
-                            <span class="font-medium text-sm md:text-base">Security</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center mt-4 text-gray-500 text-xs md:text-sm">
-                    <i class="fas fa-arrows-left-right mr-2"></i> Drag to scroll through skills
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section - IMPROVED PROJECT CARDS -->
-    <section id="projects" class="py-12 md:py-20 bg-gray-50">
-        <div class="container mx-auto px-4 md:px-6">
-            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12 md:mb-16 animate-slide-up mobile-text-center">
-                Featured <span class="gradient-text">Projects</span>
-            </h2>
-            
-            <!-- Industry Projects -->
-            <div class="mb-12 md:mb-16">
-                <h3 class="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center animate-slide-in-left">Industry Experience Projects</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                    <!-- 5BB Reporting Portal -->
-                    <div class="project-card animate-slide-up">
-                        <div class="project-image">
-                            <i class="fas fa-chart-bar text-4xl md:text-5xl text-white z-10"></i>
-                        </div>
-                        <div class="p-4 md:p-6">
-                            <h3 class="text-lg md:text-xl font-bold mb-2">5BB Reporting Portal</h3>
-                            <p class="text-gray-700 mb-4 text-sm md:text-base">A comprehensive reporting portal for telecommunications data analysis and visualization with real-time dashboards.</p>
-                            <div class="flex flex-wrap gap-1 md:gap-2 mb-4">
-                                <span class="project-badge industry text-xs">Industry</span>
-                                <span class="project-badge text-xs">Laravel</span>
-                                <span class="project-badge text-xs">Vue.js</span>
-                                <span class="project-badge text-xs">Inertia.js</span>
-                                <span class="project-badge text-xs">REST API</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- KPI System -->
-                    <div class="project-card animate-slide-up" style="animation-delay: 0.1s">
-                        <div class="project-image">
-                            <i class="fas fa-tachometer-alt text-4xl md:text-5xl text-white z-10"></i>
-                        </div>
-                        <div class="p-4 md:p-6">
-                            <h3 class="text-lg md:text-xl font-bold mb-2">KPI System</h3>
-                            <p class="text-gray-700 mb-4 text-sm md:text-base">Key Performance Indicator tracking system for HR department with analytics, reporting, and performance insights.</p>
-                            <div class="flex flex-wrap gap-1 md:gap-2 mb-4">
-                                <span class="project-badge industry text-xs">Industry</span>
-                                <span class="project-badge text-xs">PHP</span>
-                                <span class="project-badge text-xs">jQuery</span>
-                                <span class="project-badge text-xs">SQL</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Recruitment HR Portal -->
-                    <div class="project-card animate-slide-up" style="animation-delay: 0.2s">
-                        <div class="project-image">
-                            <i class="fas fa-users text-4xl md:text-5xl text-white z-10"></i>
-                        </div>
-                        <div class="p-4 md:p-6">
-                            <h3 class="text-lg md:text-xl font-bold mb-2">Recruitment HR Portal</h3>
-                            <p class="text-gray-700 mb-4 text-sm md:text-base">Job portal and recruitment management system with applicant tracking and interview scheduling.</p>
-                            <div class="flex flex-wrap gap-1 md:gap-2 mb-4">
-                                <span class="project-badge industry text-xs">Industry</span>
-                                <span class="project-badge text-xs">Laravel</span>
-                                <span class="project-badge text-xs">Vue.js</span>
-                                <span class="project-badge text-xs">Inertia.js</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- OS Ticketing System -->
-                    <div class="project-card animate-slide-up" style="animation-delay: 0.3s">
-                        <div class="project-image">
-                            <i class="fas fa-ticket-alt text-4xl md:text-5xl text-white z-10"></i>
-                        </div>
-                        <div class="p-4 md:p-6">
-                            <h3 class="text-lg md:text-xl font-bold mb-2">OS Ticketing System</h3>
-                            <p class="text-gray-700 mb-4 text-sm md:text-base">Admin panel for in-house issue tracking and resolution management with priority levels and SLA tracking.</p>
-                            <div class="flex flex-wrap gap-1 md:gap-2 mb-4">
-                                <span class="project-badge industry text-xs">Industry</span>
-                                <span class="project-badge text-xs">PHP</span>
-                                <span class="project-badge text-xs">SQL</span>
-                                <span class="project-badge text-xs">Admin Panel</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- GTG Ticketing API -->
-                    <div class="project-card animate-slide-up" style="animation-delay: 0.4s">
-                        <div class="project-image">
-                            <i class="fas fa-code text-4xl md:text-5xl text-white z-10"></i>
-                        </div>
-                        <div class="p-4 md:p-6">
-                            <h3 class="text-lg md:text-xl font-bold mb-2">GTG Ticketing API</h3>
-                            <p class="text-gray-700 mb-4 text-sm md:text-base">Laravel API backend for mobile app ticketing system with authentication, real-time notifications, and reporting.</p>
-                            <div class="flex flex-wrap gap-1 md:gap-2 mb-4">
-                                <span class="project-badge industry text-xs">Industry</span>
-                                <span class="project-badge text-xs">Laravel</span>
-                                <span class="project-badge text-xs">REST API</span>
-                                <span class="project-badge text-xs">Authentication</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- University of Wisdom Land -->
-                    <div class="project-card animate-slide-up" style="animation-delay: 0.5s">
-                        <div class="project-image">
-                            <i class="fas fa-university text-4xl md:text-5xl text-white z-10"></i>
-                        </div>
-                        <div class="p-4 md:p-6">
-                            <h3 class="text-lg md:text-xl font-bold mb-2">University of Wisdom Land</h3>
-                            <p class="text-gray-700 mb-4 text-sm md:text-base">University management system with course registration, student management, and academic reporting features.</p>
-                            <div class="flex flex-wrap gap-1 md:gap-2 mb-4">
-                                <span class="project-badge industry text-xs">Industry</span>
-                                <span class="project-badge text-xs">PHP</span>
-                                <span class="project-badge text-xs">jQuery</span>
-                                <span class="project-badge text-xs">SQL</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Freelance Projects -->
-            <div>
-                <h3 class="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center animate-slide-in-right">Freelance Projects</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                    <!-- Sarpaylann Book Store -->
-                    <div class="project-card animate-slide-up" style="animation-delay: 0.6s">
-                        <div class="project-image">
-                            <i class="fas fa-book text-4xl md:text-5xl text-white z-10"></i>
-                        </div>
-                        <div class="p-4 md:p-6">
-                            <h3 class="text-lg md:text-xl font-bold mb-2">Sarpaylann Book Store</h3>
-                            <p class="text-gray-700 mb-4 text-sm md:text-base">A fully functional e-commerce platform for book sales with secure payment processing, inventory management, and order tracking.</p>
-                            <div class="flex flex-wrap gap-1 md:gap-2 mb-4">
-                                <span class="project-badge freelance text-xs">Freelance</span>
-                                <span class="project-badge text-xs">PHP</span>
-                                <span class="project-badge text-xs">Laravel</span>
-                                <span class="project-badge text-xs">REST API</span>
-                                <span class="project-badge text-xs">E-commerce</span>
-                            </div>
-                            <div class="flex space-x-4 mt-4">
-                                <a href="https://www.sarpaylann.com" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300 text-sm md:text-base" target="blank">
-                                    <i class="fas fa-external-link-alt mr-2"></i> View Project
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- HeinZaw Blog -->
-                    <div class="project-card animate-slide-up" style="animation-delay: 0.7s">
-                        <div class="project-image">
-                            <i class="fas fa-dollar text-4xl md:text-5xl text-white z-10"></i>
-                        </div>
-                        <div class="p-4 md:p-6">
-                            <h3 class="text-lg md:text-xl font-bold mb-2">Master Your Money</h3>
-                            <p class="text-gray-700 mb-4 text-sm md:text-base">Articles and training blog platform with content management, user authentication, comments system, and SEO optimization.</p>
-                            <div class="flex flex-wrap gap-1 md:gap-2 mb-4">
-                                <span class="project-badge freelance text-xs">Freelance</span>
-                                <span class="project-badge text-xs">PHP</span>
-                                <span class="project-badge text-xs">Laravel</span>
-                                <span class="project-badge text-xs">REST API</span>
-                                <span class="project-badge text-xs">Learning Platform</span>
-                            </div>
-                            <div class="flex space-x-4 mt-4">
-                                <a href="https://masteryourmoneymm.com" class="text-black font-medium flex items-center hover:text-gray-700 transition duration-300 text-sm md:text-base" target="blank">
-                                    <i class="fas fa-external-link-alt mr-2"></i> View Project
-                                </a>
-                            </div>
+                        <div class="terminal-body">
+                            <div><span class="terminal-prompt">thawzin@portfolio:~$</span> whoami</div>
+                            <div class="text-gray-300">full_stack_developer</div>
+                            <div class="mt-3"><span class="terminal-prompt">thawzin@portfolio:~$</span> cat experience.txt</div>
+                            <div class="text-xs md:text-sm text-gray-400">Thailand Anywhere — Full Stack (Mar 2025 – Present)</div>
+                            <div class="text-xs md:text-sm text-gray-400">Global Technology Group (5BB) — Full Stack (Feb 2023 – Mar 2025)</div>
+                            <div class="text-xs md:text-sm text-gray-400">Sarpaylann Book Store — Freelance (Jun 2022 – Jan 2023)</div>
+                            <div class="mt-3"><span class="terminal-prompt">thawzin@portfolio:~$</span> <span class="terminal-cursor"></span></div>
                         </div>
                     </div>
                 </div>
@@ -796,151 +647,511 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-12 md:py-20 bg-white">
-        <div class="container mx-auto px-4 md:px-6">
-            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12 md:mb-16 animate-slide-up mobile-text-center">
-                Get In <span class="gradient-text">Touch</span>
-            </h2>
-            <div class="max-w-3xl mx-auto">
-                <div class="bg-gray-50 rounded-xl shadow-lg p-6 md:p-8 animate-glow">
-                    <form id="contact-form">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
-                            <div>
-                                <label for="name" class="block text-gray-700 mb-2 font-medium text-sm md:text-base">Your Name</label>
-                                <input type="text" id="name" class="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300 text-sm md:text-base" required>
-                            </div>
-                            <div>
-                                <label for="email" class="block text-gray-700 mb-2 font-medium text-sm md:text-base">Your Email</label>
-                                <input type="email" id="email" class="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300 text-sm md:text-base" required>
-                            </div>
-                        </div>
-                        <div class="mb-4 md:mb-6">
-                            <label for="subject" class="block text-gray-700 mb-2 font-medium text-sm md:text-base">Subject</label>
-                            <input type="text" id="subject" class="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300 text-sm md:text-base" required>
-                        </div>
-                        <div class="mb-4 md:mb-6">
-                            <label for="message" class="block text-gray-700 mb-2 font-medium text-sm md:text-base">Your Message</label>
-                            <textarea id="message" rows="4" class="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300 text-sm md:text-base" required></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-gray-800 transition duration-300 flex items-center justify-center shadow-lg transform hover:scale-105 text-sm md:text-base">
-                            <i class="fas fa-paper-plane mr-2"></i> Send Message
+    <!-- ========== EXPERIENCE (career journey - unchanged) ========== -->
+    <section id="experience" class="py-20 md:py-28" style="background: var(--bg-subtle);">
+        <div class="max-w-6xl mx-auto px-5 md:px-8">
+            <div class="mb-12 md:mb-16 reveal">
+                <span class="section-label">Career Journey</span>
+                <h2 class="section-heading mt-2">Professional Experience</h2>
+            </div>
+
+            <div class="max-w-3xl">
+                <div class="timeline">
+                    <!-- Thailand Anywhere -->
+                    <div class="timeline-item current animate-slide-up">
+                        <div class="timeline-date">MAR 2025 – PRESENT</div>
+                        <div class="timeline-company">Thailand Anywhere</div>
+                        <div class="timeline-role">Full-Stack Developer</div>
+                        <button class="expand-btn mt-2" data-target="exp1">
+                            <i class="fas fa-chevron-down text-xs"></i> View details
                         </button>
-                    </form>
-                </div>
-                <div class="flex justify-center space-x-6 md:space-x-8 mt-8 md:mt-12">
-                    <a href="https://github.com/Thawzin229" class="text-gray-700 hover:text-black transition duration-300 transform hover:scale-125">
-                        <i class="fab fa-github text-xl md:text-2xl"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/thaw-zin-4493572aa/" class="text-gray-700 hover:text-black transition duration-300 transform hover:scale-125">
-                        <i class="fab fa-linkedin text-xl md:text-2xl"></i>
-                    </a>
-                    <a href="mailto:thawzin842019@gmail.com" class="text-gray-700 hover:text-black transition duration-300 transform hover:scale-125">
-                        <i class="fas fa-envelope text-xl md:text-2xl"></i>
-                    </a>
-                    <a href="tel:09696629061" class="text-gray-700 hover:text-black transition duration-300 transform hover:scale-125">
-                        <i class="fas fa-phone text-xl md:text-2xl"></i>
-                    </a>
+                        <div class="expand-content" id="exp1">
+                            <div class="timeline-detail">
+                                <ul>
+                                    <li><strong>Version 1:</strong> Maintained V1, adding customer site UI, sale booking, reservation & hotel modules, and implemented new features alongside the client.</li>
+                                    <li><strong>Version 2:</strong> Built V2 from scratch with clean architecture, performance tuning, database schema design, and full documentation.</li>
+                                    <li><strong>AI Integration:</strong> Built an AI-powered sales analytics dashboard providing real-time insights, predictive trends, and hotel content creation.</li>
+                                </ul>
+                                <div class="flex flex-wrap gap-1 mt-3">
+                                    <span class="badge">Laravel</span>
+                                    <span class="badge">Vue.js</span>
+                                    <span class="badge">MySQL</span>
+                                    <span class="badge">AI Integration</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Global Technology Group -->
+                    <div class="timeline-item animate-slide-up" style="animation-delay: 0.1s;">
+                        <div class="timeline-date">FEB 2023 – MAR 2025</div>
+                        <div class="timeline-company">Global Technology Group (5BB)</div>
+                        <div class="timeline-role">Full-Stack Developer</div>
+                        <button class="expand-btn mt-2" data-target="exp2">
+                            <i class="fas fa-chevron-down text-xs"></i> View details
+                        </button>
+                        <div class="expand-content" id="exp2">
+                            <div class="timeline-detail">
+                                <ul>
+                                    <li>Designed and delivered multiple production-ready web applications supporting business and HR operations.</li>
+                                    <li>Enhanced and maintained internal platforms including HR Software (KPI), Internal Ticketing System (GTG), SDM, and Education Center (UWL).</li>
+                                    <li>Implemented secure authentication and authorization, ensuring data protection and access control.</li>
+                                    <li>Configured, deployed, and maintained applications on Apache servers for reliability and performance.</li>
+                                    <li>Collaborated with stakeholders to gather requirements and deliver functional, business-aligned solutions.</li>
+                                </ul>
+                                <div class="flex flex-wrap gap-1 mt-3">
+                                    <span class="badge">PHP</span>
+                                    <span class="badge">Laravel</span>
+                                    <span class="badge">jQuery</span>
+                                    <span class="badge">Apache</span>
+                                    <span class="badge">Auth</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sarpaylann Book Store -->
+                    <div class="timeline-item animate-slide-up" style="animation-delay: 0.2s;">
+                        <div class="timeline-date">JUN 2022 – JAN 2023</div>
+                        <div class="timeline-company">Sarpaylann Book Store</div>
+                        <div class="timeline-role">Backend Developer (Freelance)</div>
+                        <button class="expand-btn mt-2" data-target="exp3">
+                            <i class="fas fa-chevron-down text-xs"></i> View details
+                        </button>
+                        <div class="expand-content" id="exp3">
+                            <div class="timeline-detail">
+                                <ul>
+                                    <li>Developed a fully functional online bookstore with a user-friendly interface.</li>
+                                    <li>Integrated secure PHP/Laravel authentication, order processing, and payment handling.</li>
+                                    <li>Deployed and maintained the application for real-world use.</li>
+                                </ul>
+                                <div class="flex flex-wrap gap-1 mt-3">
+                                    <span class="badge">PHP</span>
+                                    <span class="badge">Laravel</span>
+                                    <span class="badge">E-commerce</span>
+                                    <span class="badge">Payment</span>
+                                </div>
+                                <div class="mt-3">
+                                    <a href="https://www.sarpaylann.com" class="text-sm font-medium inline-flex items-center gap-1.5 hover:opacity-70 transition" style="color: var(--highlight);" target="blank">
+                                        <i class="fas fa-external-link-alt text-xs"></i> View Project
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-black text-white py-6 md:py-8">
-        <div class="container mx-auto px-4 md:px-6 text-center">
-            <p class="font-mono text-sm md:text-base">&copy; 2025 Thaw Zin. All rights reserved.</p>
-            <p class="mt-2 text-gray-400 text-xs md:text-sm">Crafting digital experiences with code and creativity.</p>
+    <!-- ========== SKILLS (uniform boxes) ========== -->
+    <section id="skills" class="py-20 md:py-28" style="background: var(--bg);">
+        <div class="max-w-6xl mx-auto px-5 md:px-8">
+            <div class="mb-12 md:mb-16 reveal">
+                <span class="section-label">Tech Stack</span>
+                <h2 class="section-heading mt-2">Technical Skills</h2>
+            </div>
+
+            <!-- Frontend -->
+            <div class="mb-10">
+                <h3 class="text-base font-bold mb-4 flex items-center gap-2 reveal" style="color: var(--text);">
+                    <span class="w-1.5 h-4 rounded-full" style="background: var(--highlight);"></span>
+                    Frontend
+                </h3>
+                <div class="skills-grid">
+                    <div class="skill-tile reveal" style="transition-delay: 0.02s;"><i class="fab fa-html5"></i><span>HTML5</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.04s;"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.06s;"><i class="fab fa-bootstrap"></i><span>Bootstrap</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.06s;">
+  <svg viewBox="0 0 24 24" fill="currentColor" style="width:1.25rem;height:1.25rem;color:var(--text);flex-shrink:0;" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"/>
+  </svg>
+  <span>Tailwind</span>
+</div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.08s;"><i class="fab fa-js"></i><span>JavaScript</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.10s;"><i class="fab fa-js"></i><span>jQuery</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.12s;"><i class="fab fa-vuejs"></i><span>Vue.js</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.14s;"><i class="fab fa-react"></i><span>React</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.16s;"><i class="fas fa-code-branch"></i><span>Inertia.js</span></div>
+                </div>
+            </div>
+
+            <!-- Backend -->
+            <div class="mb-10">
+                <h3 class="text-base font-bold mb-4 flex items-center gap-2 reveal" style="color: var(--text);">
+                    <span class="w-1.5 h-4 rounded-full" style="background: var(--green);"></span>
+                    Backend
+                </h3>
+                <div class="skills-grid">
+                    <div class="skill-tile reveal" style="transition-delay: 0.02s;"><i class="fab fa-php"></i><span>PHP</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.04s;"><i class="fab fa-laravel"></i><span>Laravel</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.06s;"><i class="fab fa-python"></i><span>Python</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.08s;"><i class="fab fa-node-js"></i><span>Node.js</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.10s;"><i class="fas fa-code"></i><span>REST API</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.12s;"><i class="fas fa-shield-alt"></i><span>JWT / OAuth</span></div>
+                </div>
+            </div>
+
+            <!-- Database & Tools -->
+            <div class="mb-10">
+                <h3 class="text-base font-bold mb-4 flex items-center gap-2 reveal" style="color: var(--text);">
+                    <span class="w-1.5 h-4 rounded-full" style="background: #f59e0b;"></span>
+                    Database &amp; Tools
+                </h3>
+                <div class="skills-grid">
+                    <div class="skill-tile reveal" style="transition-delay: 0.02s;"><i class="fas fa-database"></i><span>MySQL / SQL</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.04s;"><i class="fas fa-project-diagram"></i><span>ORM / OOP</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.06s;"><i class="fab fa-git-alt"></i><span>Git</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.08s;"><i class="fab fa-github"></i><span>GitHub Actions</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.10s;"><i class="fab fa-docker"></i><span>Docker</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.12s;"><i class="fas fa-server"></i><span>Apache</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.14s;"><i class="fas fa-server"></i><span>Nginx</span></div>
+                </div>
+            </div>
+
+            <!-- AI Tools -->
+            <div>
+                <h3 class="text-base font-bold mb-4 flex items-center gap-2 reveal" style="color: var(--text);">
+                    <span class="w-1.5 h-4 rounded-full" style="background: #8b5cf6;"></span>
+                    AI Tools
+                </h3>
+                <div class="skills-grid">
+                    <div class="skill-tile reveal" style="transition-delay: 0.02s;"><i class="fas fa-robot"></i><span>Claude</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.04s;"><i class="fas fa-code"></i><span>OpenCode</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.06s;"><i class="fas fa-brain"></i><span>DeepSeek</span></div>
+                    <div class="skill-tile reveal" style="transition-delay: 0.08s;"><i class="fas fa-comment-dots"></i><span>ChatGPT</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROJECTS ========== -->
+    <section id="projects" class="py-20 md:py-28" style="background: var(--bg-subtle);">
+        <div class="max-w-6xl mx-auto px-5 md:px-8">
+            <div class="mb-12 md:mb-16 reveal">
+                <span class="section-label">Portfolio</span>
+                <h2 class="section-heading mt-2">Featured Projects</h2>
+            </div>
+
+            <!-- Industry -->
+            <div class="mb-14">
+                <h3 class="text-lg font-bold mb-6 flex items-center gap-2 reveal" style="color: var(--text);">
+                    <span class="w-1.5 h-5 rounded-full" style="background: var(--highlight);"></span>
+                    Industry Experience
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                    <!-- Thailand Anywhere (no React) -->
+                    <div class="project-card reveal" style="transition-delay: 0.02s;">
+                        <div class="project-thumb"><i class="fas fa-plane-departure"></i></div>
+                        <div class="p-5">
+                            <h4 class="font-bold mb-1.5" style="color: var(--text);">Thailand Anywhere</h4>
+                            <p class="text-sm mb-3" style="color: var(--text-soft);">Travel platform with booking, reservation, and hotel modules. Built V2 from scratch with AI-powered sales analytics and content creation.</p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="badge badge-accent">Industry</span>
+                                <span class="badge">Laravel</span>
+                                <span class="badge">Vue.js</span>
+                                <span class="badge">AI Integration</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5BB Reporting Portal -->
+                    <div class="project-card reveal" style="transition-delay: 0.06s;">
+                        <div class="project-thumb"><i class="fas fa-chart-bar"></i></div>
+                        <div class="p-5">
+                            <h4 class="font-bold mb-1.5" style="color: var(--text);">5BB Reporting Portal</h4>
+                            <p class="text-sm mb-3" style="color: var(--text-soft);">Comprehensive telecom data analysis and visualization portal with real-time dashboards.</p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="badge badge-accent">Industry</span>
+                                <span class="badge">Laravel</span>
+                                <span class="badge">Vue.js</span>
+                                <span class="badge">Inertia.js</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KPI System -->
+                    <div class="project-card reveal" style="transition-delay: 0.10s;">
+                        <div class="project-thumb"><i class="fas fa-tachometer-alt"></i></div>
+                        <div class="p-5">
+                            <h4 class="font-bold mb-1.5" style="color: var(--text);">KPI System</h4>
+                            <p class="text-sm mb-3" style="color: var(--text-soft);">HR performance indicator tracking with analytics, reporting, and insights.</p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="badge badge-accent">Industry</span>
+                                <span class="badge">PHP</span>
+                                <span class="badge">jQuery</span>
+                                <span class="badge">SQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recruitment HR Portal -->
+                    <div class="project-card reveal" style="transition-delay: 0.14s;">
+                        <div class="project-thumb"><i class="fas fa-users"></i></div>
+                        <div class="p-5">
+                            <h4 class="font-bold mb-1.5" style="color: var(--text);">Recruitment HR Portal</h4>
+                            <p class="text-sm mb-3" style="color: var(--text-soft);">Job portal and recruitment management with applicant tracking and scheduling.</p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="badge badge-accent">Industry</span>
+                                <span class="badge">Laravel</span>
+                                <span class="badge">Vue.js</span>
+                                <span class="badge">Inertia.js</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- OS Ticketing System -->
+                    <div class="project-card reveal" style="transition-delay: 0.18s;">
+                        <div class="project-thumb"><i class="fas fa-ticket-alt"></i></div>
+                        <div class="p-5">
+                            <h4 class="font-bold mb-1.5" style="color: var(--text);">OS Ticketing System</h4>
+                            <p class="text-sm mb-3" style="color: var(--text-soft);">In-house issue tracking with priority levels, SLA management, and admin panel.</p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="badge badge-accent">Industry</span>
+                                <span class="badge">PHP</span>
+                                <span class="badge">SQL</span>
+                                <span class="badge">Admin Panel</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GTG Ticketing API -->
+                    <div class="project-card reveal" style="transition-delay: 0.22s;">
+                        <div class="project-thumb"><i class="fas fa-code"></i></div>
+                        <div class="p-5">
+                            <h4 class="font-bold mb-1.5" style="color: var(--text);">GTG Ticketing API</h4>
+                            <p class="text-sm mb-3" style="color: var(--text-soft);">Laravel API backend for mobile ticketing with authentication and notifications.</p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="badge badge-accent">Industry</span>
+                                <span class="badge">Laravel</span>
+                                <span class="badge">REST API</span>
+                                <span class="badge">Auth</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- University of Wisdom Land -->
+                    <div class="project-card reveal" style="transition-delay: 0.26s;">
+                        <div class="project-thumb"><i class="fas fa-university"></i></div>
+                        <div class="p-5">
+                            <h4 class="font-bold mb-1.5" style="color: var(--text);">University of Wisdom Land</h4>
+                            <p class="text-sm mb-3" style="color: var(--text-soft);">University management with course registration, student records, and reporting.</p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="badge badge-accent">Industry</span>
+                                <span class="badge">PHP</span>
+                                <span class="badge">jQuery</span>
+                                <span class="badge">SQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Freelance -->
+            <div>
+                <h3 class="text-lg font-bold mb-6 flex items-center gap-2 reveal" style="color: var(--text);">
+                    <span class="w-1.5 h-5 rounded-full" style="background: var(--green);"></span>
+                    Freelance Projects
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="project-card reveal">
+                        <div class="project-thumb"><i class="fas fa-book"></i></div>
+                        <div class="p-5">
+                            <h4 class="font-bold mb-1.5" style="color: var(--text);">Sarpaylann Book Store</h4>
+                            <p class="text-sm mb-3" style="color: var(--text-soft);">Fully functional e-commerce platform with secure payments, inventory, and order tracking.</p>
+                            <div class="flex flex-wrap gap-1 mb-3">
+                                <span class="badge badge-accent">Freelance</span>
+                                <span class="badge">PHP</span>
+                                <span class="badge">Laravel</span>
+                                <span class="badge">REST API</span>
+                                <span class="badge">E-commerce</span>
+                            </div>
+                            <a href="https://www.sarpaylann.com" class="text-sm font-medium inline-flex items-center gap-1.5 hover:opacity-70 transition" style="color: var(--highlight);" target="blank">
+                                <i class="fas fa-external-link-alt text-xs"></i> View Project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EDUCATION & LANGUAGES ========== -->
+    <section id="education" class="py-20 md:py-28" style="background: var(--bg);">
+        <div class="max-w-6xl mx-auto px-5 md:px-8">
+            <div class="mb-12 md:mb-16 reveal">
+                <span class="section-label">Background</span>
+                <h2 class="section-heading mt-2">Education &amp; Languages</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl">
+                <!-- Education Card -->
+                <div class="info-card reveal" style="transition-delay: 0.02s;">
+                    <div class="flex items-start gap-4">
+                        <div class="info-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div>
+                            <h3 class="font-bold text-base mb-1" style="color: var(--text);">Dagon University</h3>
+                            <p class="text-sm font-medium mb-1" style="color: var(--highlight);">Bachelor of Arts (Hons)</p>
+                            <p class="text-sm mb-2" style="color: var(--text-soft);">International Relations</p>
+                            <span class="badge" style="background: var(--accent-soft);">2017 – 2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Languages Card -->
+                <div class="info-card reveal" style="transition-delay: 0.06s;">
+                    <div class="flex items-start gap-4">
+                        <div class="info-icon"><i class="fas fa-language"></i></div>
+                        <div class="w-full">
+                            <h3 class="font-bold text-base mb-3" style="color: var(--text);">Languages</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="lang-chip"><i class="fas fa-comment"></i> English <span style="color: var(--text-muted); font-weight: 400;">— Intermediate</span></span>
+                                <span class="lang-chip"><i class="fas fa-comment"></i> Japanese <span style="color: var(--text-muted); font-weight: 400;">— N4</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section id="contact" class="py-20 md:py-28" style="background: var(--bg-subtle);">
+        <div class="max-w-6xl mx-auto px-5 md:px-8">
+            <div class="mb-12 md:mb-16 reveal">
+                <span class="section-label">Contact</span>
+                <h2 class="section-heading mt-2">Get In Touch</h2>
+                <p class="mt-3 text-sm md:text-base max-w-xl" style="color: var(--text-soft);">
+                    Feel free to reach out through any of these channels — I'm always open to discussing new projects, opportunities, or collaborations.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+                <a href="mailto:thawzin842019@gmail.com" class="contact-link reveal" style="transition-delay: 0.02s;">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <div class="text-xs font-mono font-medium" style="color: var(--text-muted);">EMAIL</div>
+                        <div class="text-sm font-medium" style="color: var(--text);">thawzin842019@gmail.com</div>
+                    </div>
+                </a>
+                <a href="tel:+959696629061" class="contact-link reveal" style="transition-delay: 0.06s;">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <div>
+                        <div class="text-xs font-mono font-medium" style="color: var(--text-muted);">PHONE</div>
+                        <div class="text-sm font-medium" style="color: var(--text);">+95 9 696 629 061</div>
+                    </div>
+                </a>
+                <a href="https://github.com/Thawzin229" target="_blank" rel="noopener" class="contact-link reveal" style="transition-delay: 0.10s;">
+                    <div class="contact-icon"><i class="fab fa-github"></i></div>
+                    <div>
+                        <div class="text-xs font-mono font-medium" style="color: var(--text-muted);">GITHUB</div>
+                        <div class="text-sm font-medium" style="color: var(--text);">github.com/Thawzin229</div>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/in/thaw-zin-4493572aa/" target="_blank" rel="noopener" class="contact-link reveal" style="transition-delay: 0.14s;">
+                    <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
+                    <div>
+                        <div class="text-xs font-mono font-medium" style="color: var(--text-muted);">LINKEDIN</div>
+                        <div class="text-sm font-medium" style="color: var(--text);">Thaw Zin</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer py-8">
+        <div class="max-w-6xl mx-auto px-5 md:px-8 flex flex-col md:flex-row justify-between items-center gap-3">
+            <p class="font-mono text-xs" style="color: var(--text-muted);">&copy; 2025 Thaw Zin. All rights reserved.</p>
+            <p class="text-xs" style="color: var(--text-muted);">Crafting digital experiences with code &amp; creativity.</p>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
+        // ========== THEME ==========
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+
+        function setTheme(isDark) {
+            document.documentElement.classList.toggle('dark', isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        const stored = localStorage.getItem('theme');
+        if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            setTheme(true);
+        } else {
+            setTheme(false);
+        }
+
+        function toggleTheme() { setTheme(!document.documentElement.classList.contains('dark')); }
+        themeToggle.addEventListener('click', toggleTheme);
+        themeToggleMobile.addEventListener('click', toggleTheme);
+
+        // ========== MOBILE MENU ==========
         document.getElementById('menu-toggle').addEventListener('click', function() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
-            this.classList.toggle('animate-shake');
         });
 
-        // Smooth scrolling for navigation links
+        // ========== SMOOTH SCROLL ==========
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+            anchor.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
+                if (targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
                     document.getElementById('mobile-menu').classList.add('hidden');
                 }
             });
         });
 
-        // Form submission
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            this.classList.add('animate-shake');
-            setTimeout(() => {
-                this.classList.remove('animate-shake');
-                alert('Thank you for your message! I will get back to you soon.');
-                this.reset();
-            }, 500);
+        // ========== TIMELINE EXPAND ==========
+        document.querySelectorAll('.expand-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const target = document.getElementById(this.getAttribute('data-target'));
+                if (!target) return;
+                target.classList.toggle('open');
+                this.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if (target.classList.contains('open')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                    this.innerHTML = '<i class="fas fa-chevron-up text-xs"></i> Hide details';
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                    this.innerHTML = '<i class="fas fa-chevron-down text-xs"></i> View details';
+                }
+            });
         });
 
-        // Draggable horizontal scroll for skills
-        const skillScrollContainer = document.getElementById('skillScrollContainer');
-        const skillScrollTrack = document.getElementById('skillScrollTrack');
-        let isDown = false;
-        let startX;
-        let scrollLeft;
+        // ========== SCROLL REVEAL ANIMATION ==========
+        (function() {
+            const revealEls = document.querySelectorAll('.reveal');
+            if (!revealEls.length) return;
 
-        skillScrollContainer.addEventListener('mousedown', (e) => {
-            isDown = true;
-            skillScrollContainer.classList.add('active');
-            startX = e.pageX - skillScrollContainer.offsetLeft;
-            scrollLeft = skillScrollContainer.scrollLeft;
-        });
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                revealEls.forEach(el => el.classList.add('is-visible'));
+                return;
+            }
 
-        skillScrollContainer.addEventListener('mouseleave', () => {
-            isDown = false;
-            skillScrollContainer.classList.remove('active');
-        });
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.12,
+                rootMargin: '0px 0px -40px 0px'
+            });
 
-        skillScrollContainer.addEventListener('mouseup', () => {
-            isDown = false;
-            skillScrollContainer.classList.remove('active');
-        });
-
-        skillScrollContainer.addEventListener('mousemove', (e) => {
-            if(!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - skillScrollContainer.offsetLeft;
-            const walk = (x - startX) * 2; // Scroll speed multiplier
-            skillScrollContainer.scrollLeft = scrollLeft - walk;
-        });
-
-        // Touch events for mobile
-        skillScrollContainer.addEventListener('touchstart', (e) => {
-            isDown = true;
-            startX = e.touches[0].pageX - skillScrollContainer.offsetLeft;
-            scrollLeft = skillScrollContainer.scrollLeft;
-        });
-
-        skillScrollContainer.addEventListener('touchend', () => {
-            isDown = false;
-        });
-
-        skillScrollContainer.addEventListener('touchmove', (e) => {
-            if(!isDown) return;
-            const x = e.touches[0].pageX - skillScrollContainer.offsetLeft;
-            const walk = (x - startX) * 2;
-            skillScrollContainer.scrollLeft = scrollLeft - walk;
-        });
+            revealEls.forEach(el => observer.observe(el));
+        })();
     </script>
 </body>
 </html>
